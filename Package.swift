@@ -1,28 +1,29 @@
 // swift-tools-version: 5.8
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// Specifies the Swift Tools version this package is compatible with.
 
 import PackageDescription
 
 let package = Package(
-    name: "SwiftPress",
-    products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(
-            name: "SwiftPress",
-            targets: ["SwiftPress"]),
-    ],
-    dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(
-            name: "SwiftPress",
-            dependencies: []),
-        .testTarget(
-            name: "SwiftPressTests",
-            dependencies: ["SwiftPress"]),
-    ]
+  name: "SwiftPress",
+  products: [
+    .library(
+      name: "SwiftPress", // The name of the library product.
+      targets: [
+        "SwiftPress" // The target(s) that make up this product.
+      ]
+    ),
+  ],
+  dependencies: [], // List of package dependencies (none in this case).
+  targets: [
+    .target(
+      name: "SwiftPress", // The name of the target module.
+      dependencies: [] // List of module dependencies (none in this case).
+    ),
+    .testTarget(
+      name: "SwiftPressTests", // The name of the test target.
+      dependencies: [
+        "SwiftPress" // The module(s) being tested.
+      ]
+    )
+  ]
 )

@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
   name: "SwiftPress",
+  platforms: [
+    .iOS(.v15) // Specifies that this package is compatible with iOS 15 and later.
+  ],
   products: [
     .library(
       name: "SwiftPress", // The name of the library product.

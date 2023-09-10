@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="100" height="100" alt="CoreSession" src="https://i.ibb.co/Z6Bs8Nv/Swift-Press.png">
+  <img width="100" height="100" alt="CoreSession" src="https://github.com/yusasarisoy/SwiftPress/assets/30107357/b789ffce-dba6-40ec-8eed-ca9d67b03d2d">
   </br>
   <h1><b>SwiftPress</b></h1>
 </div>

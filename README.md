@@ -22,7 +22,28 @@ SwiftPress is a versatile Swift Package Manager designed to streamline your deve
 
 ## Installation
 
-To integrate SwiftPress into your project, simply add it as a dependency in your `Package.swift`:
+To integrate this package into your Swift project, you can use the Swift Package Manager (SPM).
+
+### Xcode Integration
+
+1. Open your Xcode project.
+
+2. Navigate to the `File > Add Packages...`.
+
+3. In the text field that appears, enter the URL of this repository:
+
+    ```markdown
+    https://github.com/yusasarisoy/SwiftPress
+
+4. Choose the version or branch you want to use on `Dependency Rule` section. It is preferable to stick to the `main` branch.
+
+5. Choose the SwiftPress and click the `Add Package` button.
+
+6. Finally, click the `Add Package` button in the pop-up to add the package to your project.
+
+### Package.swift Integration
+
+You can also add SwiftPress to your `Package.swift` file by adding the following dependency:
 
 ```swift
 dependencies: [

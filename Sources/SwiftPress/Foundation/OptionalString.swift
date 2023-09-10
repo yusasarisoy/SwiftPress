@@ -19,3 +19,20 @@ public extension Optional where Wrapped == String {
     self?.isEmpty ?? true
   }
 
+  /// Gets the value of the optional string or returns an empty string if it's nil.
+  ///
+  /// This property provides a convenient way to handle optional strings. If the optional string is non-nil,
+  /// it returns the wrapped string; otherwise, it returns an empty string.
+  ///
+  /// Example:
+  /// ```
+  /// let optionalStr: String? = "Hello, World!"
+  /// let result = optionalStr.orEmpty // result will be "Hello, World!".
+  ///
+  /// let optionalNil: String? = nil
+  /// let emptyResult = optionalNil.orEmpty // emptyResult will be an empty string.
+  /// ```
+  var orEmpty: String {
+    self ?? .empty
+  }
+}

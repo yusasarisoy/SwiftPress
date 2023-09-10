@@ -61,3 +61,27 @@ final class OptionalStringTests: XCTestCase {
     XCTAssertFalse(isStringNilOrEmpty)
   }
 
+  // MARK: - orEmpty
+
+  func test_orEmptyWithNilOptionalString_shouldReturnEmptyString() {
+    // Given
+    let optionalString: String? = .none
+
+    // When
+    let doesStringHaveValueOrEmpty = optionalString.orEmpty
+
+    // Then
+    XCTAssertEqual(doesStringHaveValueOrEmpty, .empty)
+  }
+
+  func test_orEmptyWithNonNilOptionalString_shouldReturnOriginalString() {
+    // Given
+    let optionalString: String? = "Hello, World!"
+
+    // When
+    let doesStringHaveValueOrEmpty = optionalString.orEmpty
+
+    // Then
+    XCTAssertEqual(doesStringHaveValueOrEmpty, "Hello, World!")
+  }
+}

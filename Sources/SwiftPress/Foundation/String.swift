@@ -11,4 +11,16 @@ public extension String {
   static var empty: String {
     ""
   }
+
+  /// Clears the content of the string, setting it to an empty string.
+  ///
+  /// Example:
+  /// ```
+  /// var myText = "This is some text."
+  /// myText.clear()
+  /// print("Cleared text: \(myText)") // Output: Cleared text:
+  /// ```
+  mutating func clear() {
+    self = .empty
+  }
 }

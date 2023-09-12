@@ -23,4 +23,18 @@ public extension String {
   mutating func clear() {
     self = .empty
   }
+
+  /// Removes all whitespace and new line characters from the string.
+  /// - Returns: A new string with all whitespace and new line characters removed.
+  ///
+  ///
+  /// Example:
+  /// ```
+  /// let inputString = "   Hello, \nWorld!   "
+  /// let result = inputString.removeWhitespaceAndNewLines()
+  /// // Result: "Hello,World!"
+  /// ```
+  func removeWhitespaceAndNewLines() -> String {
+    replacingOccurrences(of: " ", with: String.empty).replacingOccurrences(of: "\n", with: String.empty)
+  }
 }

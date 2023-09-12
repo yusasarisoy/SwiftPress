@@ -86,5 +86,38 @@ final class StringTests: XCTestCase {
     XCTAssertEqual(stringWithWhitespace, .empty)
   }
 
+  // MARK: - removeWhitespaceAndNewLines()
+
+  func test_whenRemoveWhitespaceAndNewLinesWithWhitespaceAndNewLines_expectWhitespaceRemoved() {
+    // Given
+    let inputString = "   Hello, \nWorld!   "
+
+    // When
+    let result = inputString.removeWhitespaceAndNewLines()
+
+    // Then
+    XCTAssertEqual(result, "Hello,World!")
+  }
+
+  func test_whenRemoveWhitespaceAndNewLinesWithoutWhitespaceAndNewLines_expectUnchanged() {
+    // Given
+    let inputString = "NoWhitespaceOrNewLines"
+
+    // When
+    let result = inputString.removeWhitespaceAndNewLines()
+
+    // Then
+    XCTAssertEqual(result, inputString)
+  }
+
+  func test_whenRemoveWhitespaceAndNewLinesWithEmptyString_expectEmptyString() {
+    // Given
+    let inputString: String = .empty
+
+    // When
+    let result = inputString.removeWhitespaceAndNewLines()
+
+    // Then
+    XCTAssertEqual(result, .empty)
   }
 }

@@ -19,7 +19,7 @@ final class StringTests: XCTestCase {
   
   func test_staticEmptyProperty_expectToReturnsEmptyString() {
     // Given
-    let expectedEmptyString: String = ""
+    let expectedEmptyString: String = .empty
 
     // When
     let emptyString = String.empty
@@ -43,13 +43,13 @@ final class StringTests: XCTestCase {
 
   func test_whenClearEmptyString_itShouldBeAnEmptyString() {
     // Given
-    var emptyString = ""
+    var emptyString: String = .empty
 
     // When
     emptyString.clear()
 
     // Then
-    XCTAssertEqual(emptyString, "")
+    XCTAssertEqual(emptyString, .empty)
   }
 
   func test_whenClearNonEmptyString_itShouldBeAnEmptyString() {
@@ -60,7 +60,7 @@ final class StringTests: XCTestCase {
     nonEmptyString.clear()
 
     // Then
-    XCTAssertEqual(nonEmptyString, "")
+    XCTAssertEqual(nonEmptyString, .empty)
   }
 
   func test_whenClearNonEmptyStringOfUITextField_itShouldBeAnEmptyString() {
@@ -72,7 +72,7 @@ final class StringTests: XCTestCase {
     textField.text?.clear()
 
     // Then
-    XCTAssertEqual(textField.text, "")
+    XCTAssertEqual(textField.text, .empty)
   }
 
   func test_whenClearNonEmptyStringWithWhitespaces_itShouldBeAnEmptyString() {
@@ -83,6 +83,8 @@ final class StringTests: XCTestCase {
     stringWithWhitespace.clear()
 
     // Then
-    XCTAssertEqual(stringWithWhitespace, "")
+    XCTAssertEqual(stringWithWhitespace, .empty)
+  }
+
   }
 }

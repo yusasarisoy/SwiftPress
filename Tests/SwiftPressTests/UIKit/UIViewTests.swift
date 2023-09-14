@@ -65,4 +65,33 @@ final class UIViewTests: XCTestCase {
     XCTAssertEqual(constraints[2].constant, 16) // Top
     XCTAssertEqual(constraints[3].constant, -16) // Bottom
   }
+
+  // MARK: - horizontalEdgesEqualToSuperview(padding:)
+
+  func test_whenHorizontalEdgesEqualToSuperview_expectHorizontalConstraintsValuesAreTrue() {
+    // Given
+    let superview = UIView()
+    let view = UIView()
+    superview.addSubview(view)
+
+    // When
+    let constraints = view.horizontalEdgesEqualToSuperview(padding: 16)
+
+    // Then
+    XCTAssertEqual(constraints.count, 4)
+    XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
+    XCTAssertEqual(constraints[0].constant, 16)
+    XCTAssertEqual(constraints[1].constant, -16)
+  }
+
+  func test_whenHorizontalEdgesEqualToSuperviewWithoutSuperview_expectThereIsNoContraints() {
+    // Given
+    let view = UIView()
+
+    // When
+    let constraints = view.horizontalEdgesEqualToSuperview(padding: 16)
+
+    // Then
+    XCTAssertEqual(constraints.count, 0)
+  }
 }

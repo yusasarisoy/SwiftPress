@@ -113,4 +113,51 @@ public extension UIView {
 
     return constraints
   }
+
+  /// Creates and activates a constraint that sets the height of the view equal to its width.
+  ///
+  /// This extension method is useful for maintaining a square aspect ratio for a UIView.
+  ///
+  /// - Returns: The activated `NSLayoutConstraint` that sets the height equal to the width of the view.
+  ///
+  /// - Note: This method should be called on a view that is already added to a superview.
+  /// - Warning: If the view is not in a superview, this method will return nil, and the constraint won't be created.
+  ///
+  /// Example:
+  ///
+  ///   ```
+  ///   // Create a UIView and add it to a superview.
+  ///   let containerView = UIView()
+  ///   containerView.translatesAutoresizingMaskIntoConstraints = false
+  ///   view.addSubview(containerView)
+  ///
+  ///   // Create a red square view and add it to the containerView.
+  ///   let redSquare = UIView()
+  ///   redSquare.translatesAutoresizingMaskIntoConstraints = false
+  ///   redSquare.backgroundColor = .red
+  ///   containerView.addSubview(redSquare)
+  ///
+  ///   // Set the height of the red square equal to its width.
+  ///   redSquare.heightEqualToWidth()
+  ///
+  ///   // Add additional constraints to position the red square within the containerView.
+  ///   NSLayoutConstraint.activate([
+  ///       redSquare.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+  ///       redSquare.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+  ///       redSquare.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.5)
+  ///   ])
+  ///   ```
+  @discardableResult
+  func heightEqualToWidth() -> NSLayoutConstraint? {
+    guard let superview else {
+      return .none
+    }
+
+    translatesAutoresizingMaskIntoConstraints = false
+
+    let constraint = heightAnchor.constraint(equalTo: widthAnchor)
+    superview.addConstraint(constraint)
+
+    return constraint
+  }
 }

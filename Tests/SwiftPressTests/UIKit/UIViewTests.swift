@@ -94,4 +94,29 @@ final class UIViewTests: XCTestCase {
     // Then
     XCTAssertEqual(constraints.count, 0)
   }
+
+  // MARK: - heightEqualToWidth()
+
+  func test_whenHeightEqualToWidth_expectConstraintIsActive() {
+    // When
+    guard let constraint = view.heightEqualToWidth() else {
+      XCTFail("constraint property is nil.")
+      return
+    }
+
+    // Then
+    XCTAssertNotNil(constraint)
+    XCTAssertTrue(constraint.isActive)
+  }
+
+  func test_whenHeightEqualToWidthWithoutSuperview_expectConstraintIsNil() {
+    // Given
+    view.removeFromSuperview()
+
+    // When
+    let constraint = view.heightEqualToWidth()
+
+    // Then
+    XCTAssertNil(constraint)
+  }
 }

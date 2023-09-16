@@ -160,4 +160,53 @@ public extension UIView {
 
     return constraint
   }
+
+  /// Creates and activates a constraint that sets the height of the view to a specific constant value.
+  ///
+  /// This extension method is useful for setting a fixed height for a UIView.
+  ///
+  /// - Parameter constant: The constant height value to set.
+  ///
+  /// - Returns: The activated `NSLayoutConstraint` that sets the height to the specified constant value.
+  ///
+  /// - Note: This method should be called on a view that is already added to a superview.
+  /// - Warning: If the view is not in a superview, this method will return nil, and the constraint won't be created.
+  ///
+  /// - Example:
+  ///
+  /// ```swift
+  /// // Create a UIView and add it to a superview.
+  /// let containerView = UIView()
+  /// containerView.translatesAutoresizingMaskIntoConstraints = false
+  /// view.addSubview(containerView)
+  ///
+  /// // Create a red view and add it to the containerView.
+  /// let redView = UIView()
+  /// redView.translatesAutoresizingMaskIntoConstraints = false
+  /// redView.backgroundColor = .red
+  /// containerView.addSubview(redView)
+  ///
+  /// // Set the height of the red view to a constant value.
+  /// redView.heightEqualTo(100)
+  ///
+  /// // Add additional constraints to position the red view within the containerView.
+  /// NSLayoutConstraint.activate([
+  ///   redView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+  ///   redView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+  ///   redView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.5)
+  /// ])
+  /// ```
+  @discardableResult
+  func heightEqualTo(_ constant: CGFloat) -> NSLayoutConstraint? {
+    guard let superview else {
+      return .none
+    }
+
+    translatesAutoresizingMaskIntoConstraints = false
+
+    let constraint = heightAnchor.constraint(equalToConstant: constant)
+    superview.addConstraint(constraint)
+
+    return constraint
+  }
 }

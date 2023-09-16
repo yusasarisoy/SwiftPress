@@ -119,4 +119,32 @@ final class UIViewTests: XCTestCase {
     // Then
     XCTAssertNil(constraint)
   }
+
+  // MARK: - heightEqualTo(_:)
+
+  func test_whenHeightEqualToConstant_expectConstraintIsActive() {
+    // Given
+    let constant: CGFloat = 50
+
+    // When
+    guard let constraint = view.heightEqualTo(constant) else {
+      XCTFail("constraint property is nil.")
+      return
+    }
+
+    // Then
+    XCTAssertNotNil(constraint)
+    XCTAssertTrue(constraint.isActive)
+  }
+
+  func test_whenHeightEqualToConstantWithoutSuperview_expectConstraintIsNil() {
+    // Given
+    view.removeFromSuperview()
+
+    // When
+    let constraint = view.heightEqualTo(50)
+
+    // Then
+    XCTAssertNil(constraint)
+  }
 }

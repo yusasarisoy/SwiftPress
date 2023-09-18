@@ -147,4 +147,29 @@ final class UIViewTests: XCTestCase {
     // Then
     XCTAssertNil(constraint)
   }
+
+  // MARK: - centerInSuperview(priority:)
+
+  func test_whenCenterInSuperview_expectTranslatesAutoresizingMaskIntoConstraintsIsFalse() {
+    // When
+    let constraints = view.centerInSuperview()
+
+    XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
+  }
+
+  func test_whenCenterInSuperview_expectThereAreTwoConstraintsAndTheyMatchWithPreferredPriority() {
+    // Given
+    let customPriority: UILayoutPriority = .defaultHigh
+
+    // When
+    let constraints = view.centerInSuperview(priority: customPriority)
+
+    // Then
+    XCTAssertEqual(constraints.count, 2)
+
+    constraints.forEach {
+      XCTAssertEqual($0.priority, customPriority)
+      XCTAssertTrue($0.isActive)
+    }
+  }
 }

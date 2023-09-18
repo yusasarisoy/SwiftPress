@@ -209,4 +209,39 @@ public extension UIView {
 
     return constraint
   }
+
+  /// Centers the view horizontally and vertically within its superview.
+  /// - Parameter priority: Optional priority for the constraints. Default is UILayoutPriority.required.
+  /// - Returns: An array of NSLayoutConstraint objects representing the added constraints.
+  ///
+  ///  Example:
+  ///
+  /// ```swift
+  /// let superview = UIView()
+  /// let view = UIView()
+  ///
+  /// superview.addSubview(view)
+  ///
+  /// // Center the 'view' within its superview.
+  /// view.centerInSuperview()
+  /// ```
+  ///
+  @discardableResult
+  func centerInSuperview(priority: UILayoutPriority = .required) -> [NSLayoutConstraint] {
+    guard let superview else {
+      fatalError("The view must have a superview to be centered.")
+    }
+
+    translatesAutoresizingMaskIntoConstraints = false
+
+    let centerXConstraint = centerXAnchor.constraint(equalTo: superview.centerXAnchor)
+    let centerYConstraint = centerYAnchor.constraint(equalTo: superview.centerYAnchor)
+
+    centerXConstraint.priority = priority
+    centerYConstraint.priority = priority
+
+    NSLayoutConstraint.activate([centerXConstraint, centerYConstraint])
+
+    return [centerXConstraint, centerYConstraint]
+  }
 }

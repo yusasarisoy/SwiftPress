@@ -152,8 +152,9 @@ final class UIViewTests: XCTestCase {
 
   func test_whenCenterInSuperview_expectTranslatesAutoresizingMaskIntoConstraintsIsFalse() {
     // When
-    let constraints = view.centerInSuperview()
+    view.centerInSuperview()
 
+    // Then
     XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
   }
 

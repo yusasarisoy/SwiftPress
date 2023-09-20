@@ -2,7 +2,7 @@ import UIKit
 
 /// An extension to UIColor that provides a convenient way to create UIColor instances
 /// from hexadecimal color codes.
-extension UIColor {
+public extension UIColor {
   /// Creates a UIColor instance from a hexadecimal color code.
   ///
   /// - Parameters:

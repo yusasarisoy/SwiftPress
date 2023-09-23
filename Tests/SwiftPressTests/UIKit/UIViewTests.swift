@@ -173,4 +173,33 @@ final class UIViewTests: XCTestCase {
       XCTAssertTrue($0.isActive)
     }
   }
+
+  // MARK: - centerYEqualTo(_ anchor:)
+
+  func test_whenCenterYEqualToAnchor_expectConstraintIsActive() {
+    // Given
+    let anchorView = UIView()
+    superview.addSubview(anchorView)
+
+    // When
+    guard let constraint = view.centerYEqualTo(anchorView.centerYAnchor) else {
+      XCTFail("constraint property is nil.")
+      return
+    }
+
+    // Then
+    XCTAssertNotNil(constraint)
+    XCTAssertTrue(constraint.isActive)
+  }
+
+  func test_whenCenterYEqualToAnchorWithoutSuperview_expectConstraintIsNil() {
+    // Given
+    view.removeFromSuperview()
+
+    // When
+    let constraint = view.centerYEqualTo(superview.centerYAnchor)
+
+    // Then
+    XCTAssertNil(constraint)
+  }
 }

@@ -244,4 +244,41 @@ public extension UIView {
 
     return [centerXConstraint, centerYConstraint]
   }
+
+  /// A convenient extension for NSLayoutConstraint to easily center the Y-axis of a view to a specified NSLayoutYAxisAnchor.
+  ///
+  /// This method creates and adds a NSLayoutConstraint to the superview of the current view,
+  /// aligning the centerYAnchor of the view with the specified anchor. It also disables the view's translatesAutoresizingMaskIntoConstraints property if it's not already disabled.
+  ///
+  /// - Parameter anchor: The NSLayoutYAxisAnchor to which the centerYAnchor of the view will be aligned.
+  /// - Returns: The NSLayoutConstraint that has been created and added to the superview, or nil if the view does not have a superview.
+  ///
+  /// - Note: The `@discardableResult` attribute is used to suppress the warning that occurs when the result of this function is not used.
+  ///  It is safe to ignore this result if you don't need to reference the NSLayoutConstraint later.
+  ///
+  /// - Example:
+  ///
+  /// ```
+  /// let myView = UIView()
+  /// myView.centerYEqualTo(someOtherView.centerYAnchor)
+  /// ```
+  ///
+  /// - Precondition: The view on which this method is called should have a superview, otherwise, this method will return nil.
+  ///
+  /// - Postcondition: If the view did not have translatesAutoresizingMaskIntoConstraints set to false, this method sets it to false before adding the constraint to the superview.
+  ///
+  @discardableResult
+  func centerYEqualTo(_ anchor: NSLayoutAnchor<NSLayoutYAxisAnchor>) -> NSLayoutConstraint? {
+    guard let superview else {
+      return .none
+    }
+
+    translatesAutoresizingMaskIntoConstraints = false
+
+    let constraint = centerYAnchor.constraint(equalTo: anchor)
+    superview.addConstraint(constraint)
+
+    return constraint
+  }
+  
 }

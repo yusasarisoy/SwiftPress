@@ -280,5 +280,83 @@ public extension UIView {
 
     return constraint
   }
-  
 }
+
+// MARK: - Builder
+
+/// A protocol for building and configuring objects.
+public protocol Builder {
+  /// The type of object that can be built and configured.
+  associatedtype Element
+
+  /// Build and configure an object.
+  ///
+  /// - Parameter configure: A closure that takes the object as its argument and
+  ///   allows you to configure its properties.
+  /// - Returns: The configured object.
+  ///
+  /// Example:
+  ///
+  /// ```
+  /// // Create and configure a UILabel using the Builder protocol.
+  /// let titleLabel = UILabel().build {
+  ///   $0.text = "Hello, World!"
+  ///   $0.textColor = .darkText
+  /// }
+  /// ```
+  ///
+  /// or
+  ///
+  /// ```
+  /// let titleLabel = UILabel().build { label in
+  ///   label.text = "Hello, World!"
+  ///   label.textColor = .darkText
+  /// }
+  /// ```
+  ///
+  @discardableResult
+  func build(_ configure: (_ element: Element) -> Void) -> Element
+}
+
+public extension Builder {
+  /// Build and configure an object.
+  ///
+  /// - Parameter configure: A closure that takes the object as its argument and
+  ///   allows you to configure its properties.
+  /// - Returns: The configured object.
+  ///
+  /// Example:
+  ///
+  /// ```
+  /// // Create and configure a UILabel using the Builder protocol.
+  /// let titleLabel = UILabel().build {
+  ///   $0.text = "Hello, World!"
+  ///   $0.textColor = .darkText
+  /// }
+  /// ```
+  /// 
+  /// or
+  ///
+  /// ```
+  /// let titleLabel = UILabel().build { label in
+  ///   label.text = "Hello, World!"
+  ///   label.textColor = .darkText
+  /// }
+  /// ```
+  ///
+  @discardableResult
+  func build(_ configure: (_ element: Self) -> Void) -> Self {
+    configure(self)
+
+    // If the object is a UIView or its subclass, 
+    // set translatesAutoresizingMaskIntoConstraints to false.
+    if let view = self as? UIView {
+      view.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    return self
+  }
+}
+
+/// Conform NSObject to the Builder protocol to make it available for all NSObject subclasses.
+extension NSObject: Builder { }

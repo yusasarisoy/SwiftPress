@@ -202,4 +202,36 @@ final class UIViewTests: XCTestCase {
     // Then
     XCTAssertNil(constraint)
   }
+
+  // MARK: - build(_:)
+
+  func test_givenUILabelBuilderWhenConfiguringWithTextAndTextColor_expectPropertiesAreSet() {
+    // Given
+    let builder = UILabel()
+
+    // When
+    let titleLabel = builder.build {
+      $0.text = "Hello, World!"
+      $0.textColor = .darkText
+    }
+
+    // Then
+    XCTAssertEqual(titleLabel.text, "Hello, World!")
+    XCTAssertEqual(titleLabel.textColor, .darkText)
+    XCTAssertFalse(titleLabel.translatesAutoresizingMaskIntoConstraints) // Should be false for UIView subclasses.
+  }
+
+  func test_givenUIButtonBuilderWhenConfiguringWithTitleAndTarget_expectPropertiesAreSet() {
+    // Given
+    let builder = UIButton()
+
+    // When
+    let submitButton = builder.build {
+      $0.setTitle("Submit", for: .normal)
+    }
+
+    // Then
+    XCTAssertEqual(submitButton.title(for: .normal), "Submit")
+    XCTAssertFalse(submitButton.translatesAutoresizingMaskIntoConstraints) // Should be false for UIView subclasses.
+  }
 }

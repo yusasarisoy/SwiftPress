@@ -42,4 +42,31 @@ public extension UICollectionView {
 
     return cell
   }
+
+  /// Register a UICollectionViewCell class with the collection view.
+  ///
+  /// - Parameter cellClass: The UICollectionViewCell subclass to register.
+  ///
+  /// Example:
+  ///
+  /// ```
+  /// let collectionView = UICollectionView(
+  ///   frame: CGRect.zero,
+  ///   collectionViewLayout: UICollectionViewFlowLayout()
+  /// )
+  /// 
+  /// collectionView.registerCell(YourCustomCell.self)
+  /// ```
+  ///
+  /// This method registers a UICollectionViewCell class with the UICollectionView using the cell class itself as the reuse identifier.
+  ///
+  /// - Note: This method assumes that the UICollectionViewCell is created programmatically and does not require a separate XIB file.
+  ///
+  func registerCell<Element: UICollectionViewCell>(_: Element.Type) {
+    let cellIdentifier = Element.identifier
+    register(
+      Element.self,
+      forCellWithReuseIdentifier: cellIdentifier
+    )
+  }
 }

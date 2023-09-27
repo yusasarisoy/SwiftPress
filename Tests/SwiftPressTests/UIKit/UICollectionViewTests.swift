@@ -41,4 +41,31 @@ final class UICollectionViewTests: XCTestCase {
     // Then
     XCTAssertNotNil(cell)
   }
+
+  // MARK: - registerCell(_:)
+
+  func test_whenRegisterCell_expectCellIsNotNil() {
+    // Given
+    final class YourCustomCell: UICollectionViewCell { }
+
+    let collectionView = UICollectionView(
+      frame: CGRect.zero, 
+      collectionViewLayout: UICollectionViewFlowLayout()
+    )
+
+    // When
+    collectionView.registerCell(YourCustomCell.self)
+
+    // Then
+    let cell = collectionView.dequeueReusableCell(
+      withReuseIdentifier: YourCustomCell.identifier,
+      for: IndexPath(
+        row: .zero,
+        section: .zero
+      )
+    )
+
+    XCTAssertNotNil(cell)
+    XCTAssertTrue(cell is YourCustomCell)
+  }
 }

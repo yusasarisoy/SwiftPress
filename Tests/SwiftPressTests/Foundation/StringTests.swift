@@ -129,7 +129,7 @@ final class StringTests: XCTestCase {
     // For example: "hello_world" = "Hello, World!";
 
     // When
-    // let localizedString = "hello_world".localized()
+    // let localizedString = "hello_world".localized
 
     // Then
     // XCTAssertEqual(localizedString, "Hello, World!")

@@ -40,19 +40,21 @@ public extension String {
     replacingOccurrences(of: " ", with: String.empty).replacingOccurrences(of: "\n", with: String.empty)
   }
 
-  /// Localizes the string using NSLocalizedString.
+  /// Localizes a string using the NSLocalizedString function.
   ///
-  /// This method retrieves the localized version of the string using the provided key.
+  /// This computed property allows any String to be easily localized using the NSLocalizedString function.
+  /// It uses the string itself as the localization key, assuming that the key is defined in the Localizable.strings file.
   ///
-  /// Example:
+  /// Example usage:
   /// ```
-  /// let localizedGreeting = "hello_world".localized()
-  /// // localizedGreeting will contain the localized string "Hello, World!" based on the device's language settings.
+  /// let localizedGreeting = "hello_world".localized
+  /// // localizedGreeting will contain the localized version of "Hello, World!" based on the device's language settings.
   /// ```
   ///
-  /// - Parameter comment: An optional comment to describe the purpose of the localized string.
-  /// - Returns: The localized string.
-  func localized(comment: String = "") -> String {
-    NSLocalizedString(self, comment: comment)
+  /// - Note: Make sure that the string value is defined as a key in the Localizable.strings file for localization to work correctly.
+  ///
+  /// - Returns: The localized version of the string.
+  var localized: String {
+    NSLocalizedString(self, comment: .empty)
   }
 }

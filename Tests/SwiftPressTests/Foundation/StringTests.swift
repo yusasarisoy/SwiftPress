@@ -120,4 +120,18 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertEqual(result, .empty)
   }
+
+  // MARK: - localized(comment:)
+
+  func test_whenHelloWorldBeLocalized_expectToBeLocalizedCorrectly() {
+    // Given
+    // Define a test localized string in your Localizable.strings file.
+    // For example: "hello_world" = "Hello, World!";
+
+    // When
+    // let localizedString = "hello_world".localized()
+
+    // Then
+    // XCTAssertEqual(localizedString, "Hello, World!")
+  }
 }

@@ -1,3 +1,5 @@
+import Foundation
+
 /// An extension on the `String` type providing utility methods.
 public extension String {
   /// Represents an empty string.
@@ -36,5 +38,21 @@ public extension String {
   /// ```
   func removeWhitespaceAndNewLines() -> String {
     replacingOccurrences(of: " ", with: String.empty).replacingOccurrences(of: "\n", with: String.empty)
+  }
+
+  /// Localizes the string using NSLocalizedString.
+  ///
+  /// This method retrieves the localized version of the string using the provided key.
+  ///
+  /// Example:
+  /// ```
+  /// let localizedGreeting = "hello_world".localized()
+  /// // localizedGreeting will contain the localized string "Hello, World!" based on the device's language settings.
+  /// ```
+  ///
+  /// - Parameter comment: An optional comment to describe the purpose of the localized string.
+  /// - Returns: The localized string.
+  func localized(comment: String = "") -> String {
+    NSLocalizedString(self, comment: comment)
   }
 }

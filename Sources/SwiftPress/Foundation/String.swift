@@ -58,3 +58,25 @@ public extension String {
     NSLocalizedString(self, comment: .empty)
   }
 }
+
+// MARK: - RawRepresentable
+
+extension RawRepresentable where Self: RawRepresentable, RawValue == String {
+  /// Retrieves the localized string for the enum case's raw value.
+  ///
+  /// This property assumes that the raw value of the enum case corresponds to a key in the Localizable.strings file
+  /// and retrieves the localized string using `NSLocalizedString`.
+  ///
+  /// Example usage:
+  /// ```
+  /// let localizedSearch = Localizable.search.rawLocalizedString
+  /// // localizedSearch will contain the localized string corresponding to the "search" key.
+  /// ```
+  ///
+  /// - Note: Make sure that the string value is defined as a key in the Localizable.strings file for localization to work correctly.
+  ///
+  /// - Returns: The localized string for the enum case's raw value.
+  var rawLocalizedString: String {
+    return NSLocalizedString(rawValue, comment: .empty)
+  }
+}

@@ -135,3 +135,42 @@ final class StringTests: XCTestCase {
     // XCTAssertEqual(localizedString, "Hello, World!")
   }
 }
+
+// MARK: - Localizable
+
+enum Localizable: String {
+    case search
+    case randomSelectedGIF
+    // Add more cases as needed...
+}
+
+
+final class RawRepresentableTests: XCTestCase {
+
+  // MARK: - Test Setup
+
+  override func setUp() {
+    super.setUp()
+  }
+
+  override func tearDown() {
+    super.tearDown()
+  }
+
+  // MARK: - Tests
+
+  // MARK: - rawLocalizedString
+
+  /// Tests the localization of enum cases' raw values.
+  func test_whenRawValueSearchBeLocalized_expectToBeLocalizedCorrectly() {
+    // Given
+    // Assuming that your Localizable.strings file contains translations for these keys.
+
+    // When
+    // let localizedSearch = Localizable.search.rawLocalizedString
+
+    // Then
+    // Replace these assertions with the actual localized strings from your Localizable.strings file.
+    // XCTAssertEqual(localizedSearch, "Localized Search String")
+  }
+}

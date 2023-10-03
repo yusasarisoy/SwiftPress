@@ -121,7 +121,7 @@ final class StringTests: XCTestCase {
     XCTAssertEqual(result, .empty)
   }
 
-  // MARK: - localized(comment:)
+  // MARK: - localized
 
   func test_whenHelloWorldBeLocalized_expectToBeLocalizedCorrectly() {
     // Given

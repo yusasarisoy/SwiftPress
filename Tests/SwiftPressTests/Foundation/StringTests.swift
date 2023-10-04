@@ -134,6 +134,26 @@ final class StringTests: XCTestCase {
     // Then
     // XCTAssertEqual(localizedString, "Hello, World!")
   }
+
+  // MARK: - localizedWithFormat(_:comment:)
+
+  func test_whenSentenceWillBeLocalizedWithFormat_expectToBeLocalizedCorrectly() {
+    // Given
+    // let username = "John"
+    // let numberOfApples = 5
+
+    // Define a test localized string in your Localizable.strings file.
+    // For example: "welcome_message" = "Welcome, %@! You have %d apples.";
+
+    // When
+    // let localizedString = "welcome_message".localizedWithFormat(username, numberOfApples)
+
+    // Then
+    // XCTAssertEqual(
+    //   localizedString,
+    //   "Welcome, John! You have 5 apples."
+    // )
+  }
 }
 
 // MARK: - Localizable

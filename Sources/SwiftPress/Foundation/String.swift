@@ -57,6 +57,41 @@ public extension String {
   var localized: String {
     NSLocalizedString(self, comment: .empty)
   }
+
+  /// Localizes the string using NSLocalizedString with support for placeholders.
+  ///
+  /// This method retrieves the localized version of the string using the provided key, and if placeholders
+  /// are included in the localized string, it replaces them with the provided arguments.
+  ///
+  /// Example:
+  ///
+  /// ```
+  /// let username = "John"
+  /// let numberOfApples = 5
+  /// let localizedString = "welcome_message".localizedWithFormat(username, numberOfApples)
+  /// // localizedString will contain "Welcome, John! You have 5 apples."
+  /// ```
+  ///
+  /// - Parameters:
+  ///   - arguments: A variable number of arguments to replace placeholders in the localized string.
+  ///   - comment: An optional comment to describe the purpose of the localized string.
+  ///
+  /// - Returns: The localized string with placeholders replaced by the provided arguments (if any).
+  ///
+  func localizedWithFormat(
+    _ arguments: CVarArg...,
+    comment: String = ""
+  ) -> String {
+    let localizedString = NSLocalizedString(
+      self,
+      comment: comment
+    )
+
+    return String(
+      format: localizedString,
+      arguments: arguments
+    )
+  }
 }
 
 // MARK: - RawRepresentable

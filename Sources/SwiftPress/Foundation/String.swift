@@ -39,59 +39,6 @@ public extension String {
   func removeWhitespaceAndNewLines() -> String {
     replacingOccurrences(of: " ", with: String.empty).replacingOccurrences(of: "\n", with: String.empty)
   }
-
-  /// Localizes a string using the NSLocalizedString function.
-  ///
-  /// This computed property allows any String to be easily localized using the NSLocalizedString function.
-  /// It uses the string itself as the localization key, assuming that the key is defined in the Localizable.strings file.
-  ///
-  /// Example usage:
-  /// ```
-  /// let localizedGreeting = "hello_world".localized
-  /// // localizedGreeting will contain the localized version of "Hello, World!" based on the device's language settings.
-  /// ```
-  ///
-  /// - Note: Make sure that the string value is defined as a key in the Localizable.strings file for localization to work correctly.
-  ///
-  /// - Returns: The localized version of the string.
-  var localized: String {
-    NSLocalizedString(self, comment: .empty)
-  }
-
-  /// Localizes the string using NSLocalizedString with support for placeholders.
-  ///
-  /// This method retrieves the localized version of the string using the provided key, and if placeholders
-  /// are included in the localized string, it replaces them with the provided arguments.
-  ///
-  /// Example:
-  ///
-  /// ```
-  /// let username = "John"
-  /// let numberOfApples = 5
-  /// let localizedString = "welcome_message".localizedWithFormat(username, numberOfApples)
-  /// // localizedString will contain "Welcome, John! You have 5 apples."
-  /// ```
-  ///
-  /// - Parameters:
-  ///   - arguments: A variable number of arguments to replace placeholders in the localized string.
-  ///   - comment: An optional comment to describe the purpose of the localized string.
-  ///
-  /// - Returns: The localized string with placeholders replaced by the provided arguments (if any).
-  ///
-  func localizedWithFormat(
-    _ arguments: CVarArg...,
-    comment: String = ""
-  ) -> String {
-    let localizedString = NSLocalizedString(
-      self,
-      comment: comment
-    )
-
-    return String(
-      format: localizedString,
-      arguments: arguments
-    )
-  }
 }
 
 // MARK: - RawRepresentable
@@ -102,7 +49,7 @@ public extension RawRepresentable where Self: RawRepresentable, RawValue == Stri
   /// This property assumes that the raw value of the enum case corresponds to a key in the Localizable.strings file
   /// and retrieves the localized string using `NSLocalizedString`.
   ///
-  /// Example usage:
+  /// Example:
   /// ```
   /// let localizedSearch = Localizable.search.rawLocalizedString
   /// // localizedSearch will contain the localized string corresponding to the "search" key.
@@ -112,6 +59,24 @@ public extension RawRepresentable where Self: RawRepresentable, RawValue == Stri
   ///
   /// - Returns: The localized string for the enum case's raw value.
   var rawLocalizedString: String {
-    return NSLocalizedString(rawValue, comment: .empty)
+    NSLocalizedString(rawValue, comment: .empty)
+  }
+
+  /// Retrieves a localized string for an enum case with a format string and a placeholder.
+  ///
+  /// This function is designed for enumerations that have raw values with format strings containing placeholders.
+  /// It retrieves the localized string for the enum case's raw value, replacing the placeholder with the provided parameter.
+  ///
+  /// Example:
+  ///
+  /// ```
+  /// let localizedTitle = Localizable.yourKey.rawLocalizedString(with: "Your String")
+  /// ```
+  ///
+  /// - Parameter parameter: The value to insert into the format string placeholder.
+  /// - Returns: The localized string with the parameter inserted.
+  ///
+  func rawLocalizedString(with parameter: String) -> String {
+    String(format: NSLocalizedString(rawValue, comment: ""), parameter)
   }
 }

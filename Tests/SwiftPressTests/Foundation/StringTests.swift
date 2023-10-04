@@ -120,40 +120,6 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertEqual(result, .empty)
   }
-
-  // MARK: - localized
-
-  func test_whenHelloWorldBeLocalized_expectToBeLocalizedCorrectly() {
-    // Given
-    // Define a test localized string in your Localizable.strings file.
-    // For example: "hello_world" = "Hello, World!";
-
-    // When
-    // let localizedString = "hello_world".localized
-
-    // Then
-    // XCTAssertEqual(localizedString, "Hello, World!")
-  }
-
-  // MARK: - localizedWithFormat(_:comment:)
-
-  func test_whenSentenceWillBeLocalizedWithFormat_expectToBeLocalizedCorrectly() {
-    // Given
-    // let username = "John"
-    // let numberOfApples = 5
-
-    // Define a test localized string in your Localizable.strings file.
-    // For example: "welcome_message" = "Welcome, %@! You have %d apples.";
-
-    // When
-    // let localizedString = "welcome_message".localizedWithFormat(username, numberOfApples)
-
-    // Then
-    // XCTAssertEqual(
-    //   localizedString,
-    //   "Welcome, John! You have 5 apples."
-    // )
-  }
 }
 
 // MARK: - Localizable
@@ -192,5 +158,21 @@ final class RawRepresentableTests: XCTestCase {
     // Then
     // Replace these assertions with the actual localized strings from your Localizable.strings file.
     // XCTAssertEqual(localizedSearch, "Localized Search String")
+  }
+  
+  // MARK: - rawLocalizedString(with:)
+
+  func test_whenRawValueSearchBeLocalizedWithParameter_expectToBeLocalizedCorrectly() {
+    // Given
+    // Define test cases and their expected results.
+    // let testCase1 = Localizable.search
+    // let parameter1 = "Your Title"
+    // let expected1 = "Localized Title: Your Title"
+    
+    // When
+    // let result1 = testCase1.rawLocalizedString(with: parameter1)
+    
+    // Then
+    // XCTAssertEqual(result1, expected1)
   }
 }

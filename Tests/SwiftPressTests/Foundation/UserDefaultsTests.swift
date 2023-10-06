@@ -7,6 +7,11 @@ final class UserDefaultsTests: XCTestCase {
 
   override func setUp() {
     super.setUp()
+
+    guard let userDefaults = UserDefaults(suiteName: #file) else {
+      return
+    }
+    userDefaults.removePersistentDomain(forName: #file)
   }
 
   override func tearDown() {
@@ -14,6 +19,36 @@ final class UserDefaultsTests: XCTestCase {
   }
 
   // MARK: - Tests
+
+  // MARK: - getCustomObject(forKey:)
+
+  func test_whenRetrievingValidObject_expectToBeNotNil() {
+    // Given
+    let person = Person(
+      name: "Alice", 
+      age: 30
+    )
+
+    // When
+    UserDefaults.standard.setCustomObject(
+      person,
+      forKey: "personKey"
+    )
+    let retrievedPerson: Person? = UserDefaults.standard.getCustomObject(forKey: "personKey")
+
+    // Then
+    XCTAssertNotNil(retrievedPerson)
+    XCTAssertEqual(retrievedPerson?.name, "Alice")
+    XCTAssertEqual(retrievedPerson?.age, 30)
+  }
+
+  func test_whenRetrievingNonExistentObject_expectToBeNil() {
+    // When
+    let retrievedPerson: Person? = UserDefaults.standard.getCustomObject(forKey: "nonExistentKey")
+
+    // Then
+    XCTAssertNil(retrievedPerson)
+  }
 
   // MARK: - setCustomObject(_:forKey:)
 

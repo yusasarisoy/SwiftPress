@@ -51,4 +51,57 @@ final class ArrayTests: XCTestCase {
     // Then
     XCTAssertNil(index)
   }
+
+  // MARK: - subscript(safe:)
+
+  func test_givenNonEmptyArrayWhenAccessingValidIndex_thenReturnsCorrectElement() {
+    // Given
+    let array = [
+      "apple", 
+      "banana",
+      "cherry"
+    ]
+
+    // When
+    let result = array[safe: 1]
+
+    // Then
+    XCTAssertEqual(
+      result,
+      "banana",
+      "Accessing a valid index should return the correct element."
+    )
+  }
+
+  func test_givenNonEmptyArrayWhenAccessingOutOfBoundsIndex_thenReturnsNil() {
+    // Given
+    let array = [
+      "apple",
+      "banana",
+      "cherry"
+    ]
+
+    // When
+    let result = array[safe: 3]
+
+    // Then
+    XCTAssertNil(
+      result,
+      "Accessing an out-of-bounds index should return nil."
+    )
+  }
+  
+  func test_givenEmptyArrayWhenAccessingAnyIndex_thenReturnsNil() {
+    // Given
+    let emptyArray: [String] = []
+
+    // When
+    let result = emptyArray[safe: 0]
+
+    // Then
+    XCTAssertNil(
+      result,
+      "Accessing an element in an empty array should return nil."
+    )
+  }
 }

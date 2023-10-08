@@ -35,4 +35,28 @@ public extension Array {
     // Look up the index for the specified element.
     return indexLookup[element]
   }
+
+  /// Safely access an element at the specified index.
+  ///
+  /// This subscript allows you to access an element in the array without
+  /// causing an index out-of-range error. If the provided index is within
+  /// the bounds of the array, it returns the element; otherwise, it returns nil.
+  ///
+  /// - Parameter safe: The index at which you want to access an element safely.
+  /// - Returns: An optional element of the array's element type (`Element?`).
+  ///            Returns `nil` if the index is out of bounds.
+  ///
+  /// Example:
+  ///
+  /// ```
+  /// var fruits = ["apple", "banana", "cherry", "date"]
+  ///
+  /// let firstFruit = fruits[safe: 0] // "apple"
+  /// let thirdFruit = fruits[safe: 2] // "cherry"
+  /// let fifthFruit = fruits[safe: 4] // nil (out of bounds)
+  /// ```
+  ///
+  subscript(safe index: Index) -> Element? {
+    indices.contains(index) ? self[index] : nil
+  }
 }

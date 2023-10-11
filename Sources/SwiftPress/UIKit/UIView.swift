@@ -280,6 +280,46 @@ public extension UIView {
 
     return constraint
   }
+
+  /// An extension for UIView to add a border with a specified width and color.
+  ///
+  /// - Parameters:
+  ///   - width: The width of the border, in points.
+  ///   - color: The color of the border. It should be a `UIColor` object.
+  ///
+  /// - Note: This extension modifies the properties of the view's layer to add a border.
+  ///         Make sure to set the view's `layer.masksToBounds` property to `true` if you want the border to be visible.
+  ///         If you do not set `layer.masksToBounds` to `true`, the border may not appear.
+  ///
+  /// - Warning: Be cautious when using this extension with views that have subviews.
+  ///
+  /// - Example:
+  ///
+  ///   ```swift
+  ///   let myView = UIView(
+  ///     frame: CGRect(
+  ///       x: 0,
+  ///       y: 0,
+  ///       width: 100,
+  ///       height: 100
+  ///     )
+  ///   )
+  ///
+  ///   myView.addBorder(
+  ///     width: 2.0,
+  ///     color: .blue
+  ///   )
+  ///   
+  ///   myView.layer.masksToBounds = true // Ensure that the border is visible.
+  ///   ```
+  ///
+  func addBorder(
+    width: CGFloat, 
+    color: UIColor
+  ) {
+    layer.borderWidth = width
+    layer.borderColor = color.cgColor
+  }
 }
 
 // MARK: - Builder

@@ -234,4 +234,53 @@ final class UIViewTests: XCTestCase {
     XCTAssertEqual(submitButton.title(for: .normal), "Submit")
     XCTAssertFalse(submitButton.translatesAutoresizingMaskIntoConstraints) // Should be false for UIView subclasses.
   }
+
+  // MARK: - addBorder(width:color:)
+
+  func test_whenAddBorder_expectBorderPropertiesAreTrue() {
+    // Given
+    let testView = UIView()
+    let borderWidth: CGFloat = 2
+    let borderColor: UIColor = .red
+
+    // When
+    testView.addBorder(
+      width: borderWidth,
+      color: borderColor
+    )
+
+    // Then
+    XCTAssertEqual(
+      testView.layer.borderWidth, 
+      borderWidth
+    )
+    XCTAssertEqual(
+      testView.layer.borderColor,
+      borderColor.cgColor
+    )
+  }
+
+  func test_whenAddBorderWithMasksToBounds_expectBorderPropertiesAreTrue() {
+    // Given
+    let testView = UIView()
+    let borderWidth: CGFloat = 2
+    let borderColor: UIColor = .green
+
+    // When
+    testView.addBorder(
+      width: borderWidth, 
+      color: borderColor
+    )
+    testView.layer.masksToBounds = true
+
+    // Then
+    XCTAssertEqual(
+      testView.layer.borderWidth, 
+      borderWidth
+    )
+    XCTAssertEqual(
+      testView.layer.borderColor,
+      borderColor.cgColor
+    )
+  }
 }

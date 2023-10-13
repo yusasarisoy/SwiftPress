@@ -57,4 +57,39 @@ public extension UIColor {
       alpha: alpha
     )
   }
+
+  /// An extension for the `UIColor` class that provides a convenient way to create a color instance from a hexadecimal value.
+  ///
+  /// - Parameters:
+  ///   - hex: The hexadecimal color value as a UInt32.
+  ///   - alpha: The optional alpha value, specifying the opacity of the color. The default is 1.0 (fully opaque).
+  ///
+  /// - Returns: A `UIColor` instance with the specified color and alpha values.
+  ///
+  /// - Note:
+  ///   This extension simplifies the creation of `UIColor` instances from hexadecimal color values. The `hex` parameter should represent the color value in the format 0xRRGGBB, where RR, GG, and BB are two-digit hexadecimal values for red, green, and blue, respectively.
+  ///
+  /// - Example:
+  /// ```
+  /// // Create a red color using the hexadecimal value 0xFF0000.
+  /// let redColor = UIColor(hex: 0xFF0000)
+  ///
+  /// // Create a semi-transparent blue color using the hexadecimal value 0x0000FF and alpha 0.5.
+  /// let blueColor = UIColor(hex: 0x0000FF, alpha: 0.5)
+  /// ```
+  ///
+  convenience init(
+    hex: UInt32,
+    alpha: CGFloat = 1
+  ) {
+    let red = CGFloat((hex & 0xFF0000) >> 16) / 255.0
+    let green = CGFloat((hex & 0x00FF00) >> 8) / 255.0
+    let blue = CGFloat(hex & 0x0000FF) / 255.0
+    self.init(
+      red: red, 
+      green: green,
+      blue: blue,
+      alpha: alpha
+    )
+  }
 }

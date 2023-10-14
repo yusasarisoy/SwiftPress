@@ -31,4 +31,27 @@ extension View {
       content()
     }
   }
+
+  /// An extension on `View` to center the view within its parent container.
+  ///
+  /// - Returns: A modified view that is centered within its parent container.
+  ///
+  /// - Note:
+  ///   This extension uses a `GeometryReader` to obtain the dimensions of the parent container and centers the view within it. It's particularly useful for aligning views both horizontally and vertically.
+  ///
+  /// - Example:
+  ///
+  /// ```
+  /// Text("Centered Text")
+  ///   .center()
+  /// ```
+  ///
+  func center() -> some View {
+    GeometryReader { geometry in
+      position(
+        x: geometry.size.width / 2,
+        y: geometry.size.height / 2
+      )
+    }
+  }
 }

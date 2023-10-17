@@ -320,6 +320,49 @@ public extension UIView {
     layer.borderWidth = width
     layer.borderColor = color.cgColor
   }
+
+  /// Add a shadow to the view.
+  ///
+  /// - Parameters:
+  ///   - color: The shadow color.
+  ///   - opacity: The shadow opacity (0.0 to 1.0).
+  ///   - offset: The shadow offset.
+  ///   - radius: The shadow radius.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// // Add a shadow to a view with a red color, 0.5 opacity, offset of (0, 3), and radius of 5.
+  /// myView.addShadow(
+  ///   color: .red,
+  ///   opacity: 0.5,
+  ///   offset: CGSize(
+  ///     width: 0,
+  ///     height: 3
+  ///   ),
+  ///   radius: 5
+  /// )
+  /// ```
+  ///
+  /// Use this extension to add a shadow effect to a UIView. You can customize the shadow by specifying its color, opacity, offset (distance from the view), and radius (blur effect). By setting `layer.masksToBounds` to `false`, it allows the shadow to be visible. This is useful for enhancing the visual appearance of UI elements.
+  ///
+  /// - Parameter color: The color of the shadow.
+  /// - Parameter opacity: The opacity of the shadow (0.0 to 1.0, where 0.0 is fully transparent and 1.0 is fully opaque).
+  /// - Parameter offset: The shadow's offset from the view's bounds. Use `CGSize` to specify the horizontal and vertical offset (e.g., `CGSize(width: 0, height: 3)`).
+  /// - Parameter radius: The blur radius of the shadow. Larger values result in a more blurred shadow.
+  ///
+  func addShadow(
+    color: UIColor,
+    opacity: Float,
+    offset: CGSize,
+    radius: CGFloat
+  ) {
+    layer.shadowColor = color.cgColor
+    layer.shadowOpacity = opacity
+    layer.shadowOffset = offset
+    layer.shadowRadius = radius
+    layer.masksToBounds = false
+  }
 }
 
 // MARK: - Builder

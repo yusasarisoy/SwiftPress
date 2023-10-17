@@ -283,4 +283,55 @@ final class UIViewTests: XCTestCase {
       borderColor.cgColor
     )
   }
+
+  // MARK: - addShadow(color:opacity:offset:radius:)
+
+  func test_whenAddShadow_expectMasksToBoundsPropertyIsFalse() {
+    // Given
+    let view = MockView()
+
+    // When
+    view.addShadow(
+      color: .red,
+      opacity: 0.5,
+      offset: CGSize(
+        width: .zero,
+        height: 3
+      ),
+      radius: 5
+    )
+
+    // Then
+    XCTAssertFalse(
+      view.layer.masksToBounds,
+      "The 'masksToBounds' property should be set to 'false' to show the shadow."
+    )
+  }
+}
+
+// MARK: - MockView
+
+final private class MockView: UIView {
+
+  // MARK: - Properties
+
+  var capturedShadowColor: CGColor?
+  var capturedShadowOpacity: Float = 0
+  var capturedShadowOffset: CGSize = .zero
+  var capturedShadowRadius: CGFloat = 0
+
+  // MARK: - Override Methods
+
+  override var layer: CALayer {
+    let layer = super.layer
+    layer.masksToBounds = false
+    return layer
+  }
+
+  override func draw(_ rect: CGRect) {
+    capturedShadowColor = layer.shadowColor
+    capturedShadowOpacity = layer.shadowOpacity
+    capturedShadowOffset = layer.shadowOffset
+    capturedShadowRadius = layer.shadowRadius
+  }
 }

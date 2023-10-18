@@ -39,6 +39,39 @@ public extension String {
   func removeWhitespaceAndNewLines() -> String {
     replacingOccurrences(of: " ", with: String.empty).replacingOccurrences(of: "\n", with: String.empty)
   }
+
+  /// Check if the string is a valid email address.
+  ///
+  /// This extension method is used to validate whether a given string represents a valid email address.
+  ///
+  /// - Returns: `true` if the string is a valid email address, `false` otherwise.
+  ///
+  /// Example:
+  ///
+  /// ```
+  /// let emailAddress = "user@example.com"
+  ///
+  /// if emailAddress.isValidEmail() {
+  ///   print("Valid email address.")
+  /// } else {
+  ///   print("Invalid email address.")
+  /// }
+  /// ```
+  ///
+  /// - Note: The regular expression used for email validation checks for common email address formats, such as "user@example.com."
+  ///
+  /// - Returns: A Boolean value indicating whether the string is a valid email address.
+  ///
+  func isValidEmail() -> Bool {
+    // Regular expression pattern for validating email addresses.
+    let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+
+    // Create an NSPredicate using the email regex pattern.
+    let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+
+    // Evaluate the predicate with the string as 'SELF' and return the result.
+    return emailPredicate.evaluate(with: self)
+  }
 }
 
 // MARK: - RawRepresentable

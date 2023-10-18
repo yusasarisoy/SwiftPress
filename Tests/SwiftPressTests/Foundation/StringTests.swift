@@ -120,6 +120,63 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertEqual(result, .empty)
   }
+
+  // MARK: - isValidEmail()
+
+  func testValidEmail() {
+    // Given
+    let emailAddress = "user@example.com"
+
+    // Wheb
+    let isValid = emailAddress.isValidEmail()
+
+    // Then
+    XCTAssertTrue(isValid)
+  }
+
+  func testInvalidEmail() {
+    // Given
+    let emailAddress = "invalid-email"
+
+    // When
+    let isValid = emailAddress.isValidEmail()
+
+    // Then
+    XCTAssertFalse(isValid)
+  }
+
+  func testEmptyEmail() {
+    // Given
+    let emailAddress = ""
+
+    // When
+    let isValid = emailAddress.isValidEmail()
+
+    // Then
+    XCTAssertFalse(isValid)
+  }
+
+  func testWhitespaceEmail() {
+    // Given
+    let emailAddress = "   "
+
+    // When
+    let isValid = emailAddress.isValidEmail()
+
+    // Then
+    XCTAssertFalse(isValid)
+  }
+
+  func testMultipleAtSymbolsEmail() {
+    // Given
+    let emailAddress = "user@exam@ple.com"
+
+    // When
+    let isValid = emailAddress.isValidEmail()
+
+    // Then
+    XCTAssertFalse(isValid)
+  }
 }
 
 // MARK: - Localizable

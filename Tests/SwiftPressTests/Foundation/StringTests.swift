@@ -177,6 +177,31 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertFalse(isValid)
   }
+
+  // MARK: - toURL()
+
+  func test_whenValidURLConversion_expectURLIsNotNil() {
+    // Given
+    let urlString = "https://www.apple.com"
+
+    // When
+    let url = urlString.toURL()
+
+    // Then
+    XCTAssertNotNil(url)
+    XCTAssertEqual(url?.absoluteString, urlString)
+  }
+
+  func test_whenEmptyStringConversion_expectURLIsNil() {
+    // Given
+    let urlString = ""
+
+    // When
+    let url = urlString.toURL()
+
+    // Then
+    XCTAssertNil(url)
+  }
 }
 
 // MARK: - Localizable

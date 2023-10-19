@@ -72,6 +72,31 @@ public extension String {
     // Evaluate the predicate with the string as 'SELF' and return the result.
     return emailPredicate.evaluate(with: self)
   }
+
+  /// Convert the string to a URL.
+  ///
+  /// This extension method is used to attempt to create a `URL` instance from a given string. 
+  /// It is particularly useful for checking if a string represents a valid URL and creating a `URL` for further usage.
+  ///
+  /// - Returns: A `URL` instance created from the string, or `nil` if the string is not a valid URL.
+  ///
+  /// - Example:
+  ///
+  /// ```
+  /// let urlString = "https://www.apple.com"
+  ///
+  /// guard let url = urlString.toURL() else {
+  ///   print("Invalid URL..")
+  /// }
+  ///
+  /// print("Valid URL: \(url).")
+  /// ```
+  ///
+  /// - Note: The method uses `URL(string:)` to create a `URL` instance from the string. If the string does not conform to a valid URL format, it will return `nil`.
+  ///
+  func toURL() -> URL? {
+    URL(string: self)
+  }
 }
 
 // MARK: - RawRepresentable

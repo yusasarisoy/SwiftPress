@@ -14,7 +14,7 @@ public extension UICollectionView {
   ///
   /// Example:
   ///
-  /// ```
+  /// ```swift
   /// let cell = collectionView.dequeueReusableCell(
   ///   withIdentifier: "YourCellIdentifier",
   ///   for: indexPath
@@ -49,7 +49,7 @@ public extension UICollectionView {
   ///
   /// Example:
   ///
-  /// ```
+  /// ```swift
   /// let collectionView = UICollectionView(
   ///   frame: CGRect.zero,
   ///   collectionViewLayout: UICollectionViewFlowLayout()

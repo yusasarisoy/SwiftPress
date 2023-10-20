@@ -7,9 +7,11 @@ public extension String {
   /// This static property can be used to conveniently represent an empty string.
   ///
   /// Example:
-  /// ```
+  ///
+  /// ```swift
   /// let emptyString = String.empty
   /// ```
+  ///
   static var empty: String {
     ""
   }
@@ -17,11 +19,13 @@ public extension String {
   /// Clears the content of the string, setting it to an empty string.
   ///
   /// Example:
-  /// ```
+  ///
+  /// ```swift
   /// var myText = "This is some text."
   /// myText.clear()
   /// print("Cleared text: \(myText)") // Output: Cleared text:
   /// ```
+  ///
   mutating func clear() {
     self = .empty
   }
@@ -31,11 +35,13 @@ public extension String {
   ///
   ///
   /// Example:
-  /// ```
+  ///
+  /// ```swift
   /// let inputString = "   Hello, \nWorld!   "
   /// let result = inputString.removeWhitespaceAndNewLines()
   /// // Result: "Hello,World!"
   /// ```
+  ///
   func removeWhitespaceAndNewLines() -> String {
     replacingOccurrences(of: " ", with: String.empty).replacingOccurrences(of: "\n", with: String.empty)
   }
@@ -48,7 +54,7 @@ public extension String {
   ///
   /// Example:
   ///
-  /// ```
+  /// ```swift
   /// let emailAddress = "user@example.com"
   ///
   /// if emailAddress.isValidEmail() {
@@ -82,7 +88,7 @@ public extension String {
   ///
   /// - Example:
   ///
-  /// ```
+  /// ```swift
   /// let urlString = "https://www.apple.com"
   ///
   /// guard let url = urlString.toURL() else {
@@ -108,7 +114,8 @@ public extension RawRepresentable where Self: RawRepresentable, RawValue == Stri
   /// and retrieves the localized string using `NSLocalizedString`.
   ///
   /// Example:
-  /// ```
+  ///
+  /// ```swift
   /// let localizedSearch = Localizable.search.rawLocalizedString
   /// // localizedSearch will contain the localized string corresponding to the "search" key.
   /// ```
@@ -127,7 +134,7 @@ public extension RawRepresentable where Self: RawRepresentable, RawValue == Stri
   ///
   /// Example:
   ///
-  /// ```
+  /// ```swift
   /// let localizedTitle = Localizable.yourKey.rawLocalizedString(with: "Your String")
   /// ```
   ///

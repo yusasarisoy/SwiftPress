@@ -13,7 +13,7 @@ public extension Date {
   ///
   /// - Example:
   ///
-  /// ```
+  /// ```swift
   /// // Create a `Date` object representing the current date and time.
   /// let currentDate = Date()
   ///

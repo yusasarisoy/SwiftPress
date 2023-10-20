@@ -19,13 +19,14 @@ public extension UIColor {
   ///
   /// - Example:
   ///
-  ///   ```
-  ///   // Create a UIColor instance from a hexadecimal color code
-  ///   let customColor = UIColor(hex: "#FF5733")
+  /// ```swift
+  /// // Create a UIColor instance from a hexadecimal color code
+  /// let customColor = UIColor(hex: "#FF5733")
   ///
-  ///   // The 'customColor' variable now contains a UIColor instance representing
-  ///   // the color specified by the hexadecimal code "#FF5733".
-  ///   ```
+  /// // The 'customColor' variable now contains a UIColor instance representing
+  /// // the color specified by the hexadecimal code "#FF5733".
+  /// ```
+  /// 
   convenience init?(
     hex: String,
     alpha: CGFloat = 1
@@ -70,7 +71,8 @@ public extension UIColor {
   ///   This extension simplifies the creation of `UIColor` instances from hexadecimal color values. The `hex` parameter should represent the color value in the format 0xRRGGBB, where RR, GG, and BB are two-digit hexadecimal values for red, green, and blue, respectively.
   ///
   /// - Example:
-  /// ```
+  ///
+  /// ```swift
   /// // Create a red color using the hexadecimal value 0xFF0000.
   /// let redColor = UIColor(hex: 0xFF0000)
   ///

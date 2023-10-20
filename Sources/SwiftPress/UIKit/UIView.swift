@@ -20,7 +20,8 @@ public extension UIView {
   ///
   ///
   /// Example:
-  /// ```
+  ///
+  /// ```swift
   /// let myFirstView = UIView()
   /// myFirstView.edgesEqualToSuperview()
   ///
@@ -77,7 +78,8 @@ public extension UIView {
   ///
   ///
   /// Example:
-  /// ```
+  ///
+  /// ```swift
   /// let myFirstView = UIView()
   /// myFirstView.horizontalEdgesEqualToSuperview()
   ///
@@ -125,28 +127,29 @@ public extension UIView {
   ///
   /// Example:
   ///
-  ///   ```
-  ///   // Create a UIView and add it to a superview.
-  ///   let containerView = UIView()
-  ///   containerView.translatesAutoresizingMaskIntoConstraints = false
-  ///   view.addSubview(containerView)
+  /// ```swift
+  /// // Create a UIView and add it to a superview.
+  /// let containerView = UIView()
+  /// containerView.translatesAutoresizingMaskIntoConstraints = false
+  /// view.addSubview(containerView)
   ///
-  ///   // Create a red square view and add it to the containerView.
-  ///   let redSquare = UIView()
-  ///   redSquare.translatesAutoresizingMaskIntoConstraints = false
-  ///   redSquare.backgroundColor = .red
-  ///   containerView.addSubview(redSquare)
+  /// // Create a red square view and add it to the containerView.
+  /// let redSquare = UIView()
+  /// redSquare.translatesAutoresizingMaskIntoConstraints = false
+  /// redSquare.backgroundColor = .red
+  /// containerView.addSubview(redSquare)
   ///
-  ///   // Set the height of the red square equal to its width.
-  ///   redSquare.heightEqualToWidth()
+  /// // Set the height of the red square equal to its width.
+  /// redSquare.heightEqualToWidth()
   ///
-  ///   // Add additional constraints to position the red square within the containerView.
-  ///   NSLayoutConstraint.activate([
-  ///       redSquare.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-  ///       redSquare.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-  ///       redSquare.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.5)
-  ///   ])
-  ///   ```
+  /// // Add additional constraints to position the red square within the containerView.
+  /// NSLayoutConstraint.activate([
+  ///   redSquare.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+  ///   redSquare.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+  ///   redSquare.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.5)
+  /// ])
+  /// ```
+  /// 
   @discardableResult
   func heightEqualToWidth() -> NSLayoutConstraint? {
     guard let superview else {
@@ -258,7 +261,7 @@ public extension UIView {
   ///
   /// - Example:
   ///
-  /// ```
+  /// ```swift
   /// let myView = UIView()
   /// myView.centerYEqualTo(someOtherView.centerYAnchor)
   /// ```
@@ -295,23 +298,23 @@ public extension UIView {
   ///
   /// - Example:
   ///
-  ///   ```swift
-  ///   let myView = UIView(
-  ///     frame: CGRect(
-  ///       x: 0,
-  ///       y: 0,
-  ///       width: 100,
-  ///       height: 100
-  ///     )
+  /// ```swift
+  /// let myView = UIView(
+  ///   frame: CGRect(
+  ///     x: 0,
+  ///     y: 0,
+  ///     width: 100,
+  ///     height: 100
   ///   )
+  /// )
   ///
-  ///   myView.addBorder(
-  ///     width: 2.0,
-  ///     color: .blue
-  ///   )
-  ///   
-  ///   myView.layer.masksToBounds = true // Ensure that the border is visible.
-  ///   ```
+  /// myView.addBorder(
+  ///   width: 2.0,
+  ///   color: .blue
+  /// )
+  ///
+  /// myView.layer.masksToBounds = true // Ensure that the border is visible.
+  /// ```
   ///
   func addBorder(
     width: CGFloat, 
@@ -380,7 +383,7 @@ public protocol Builder {
   ///
   /// Example:
   ///
-  /// ```
+  /// ```swift
   /// // Create and configure a UILabel using the Builder protocol.
   /// let titleLabel = UILabel().build {
   ///   $0.text = "Hello, World!"
@@ -390,7 +393,7 @@ public protocol Builder {
   ///
   /// or
   ///
-  /// ```
+  /// ```swift
   /// let titleLabel = UILabel().build { label in
   ///   label.text = "Hello, World!"
   ///   label.textColor = .darkText
@@ -410,7 +413,7 @@ public extension Builder {
   ///
   /// Example:
   ///
-  /// ```
+  /// ```swift
   /// // Create and configure a UILabel using the Builder protocol.
   /// let titleLabel = UILabel().build {
   ///   $0.text = "Hello, World!"
@@ -420,7 +423,7 @@ public extension Builder {
   /// 
   /// or
   ///
-  /// ```
+  /// ```swift
   /// let titleLabel = UILabel().build { label in
   ///   label.text = "Hello, World!"
   ///   label.textColor = .darkText

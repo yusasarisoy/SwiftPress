@@ -9,7 +9,7 @@ public extension UICollectionViewCell {
   ///
   /// - Example:
   ///
-  /// ```
+  /// ```swift
   /// collectionView.register(
   ///   YourCustomCell.self,
   ///   forCellWithReuseIdentifier: YourCustomCell.identifier

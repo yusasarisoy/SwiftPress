@@ -48,7 +48,7 @@ public extension Array {
   ///
   /// Example:
   ///
-  /// ```
+  /// ```swift
   /// var fruits = ["apple", "banana", "cherry", "date"]
   ///
   /// let firstFruit = fruits[safe: 0] // "apple"

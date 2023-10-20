@@ -9,7 +9,7 @@ public extension UITableViewCell {
   ///
   /// - Example:
   ///
-  /// ```
+  /// ```swift
   /// tableView.register(
   ///   YourCustomCell.self,
   ///   forCellReuseIdentifier: YourCustomCell.identifier

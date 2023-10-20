@@ -41,7 +41,7 @@ extension View {
   ///
   /// - Example:
   ///
-  /// ```
+  /// ```swift
   /// Text("Centered Text")
   ///   .center()
   /// ```

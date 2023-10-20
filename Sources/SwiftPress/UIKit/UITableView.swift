@@ -14,7 +14,7 @@ public extension UITableView {
   ///
   /// Example:
   ///
-  /// ```
+  /// ```swift
   /// let cell = tableView.dequeueReusableCell(
   ///   withIdentifier: "YourCellIdentifier",
   ///   for: indexPath
@@ -49,7 +49,7 @@ public extension UITableView {
   ///
   /// Example:
   ///
-  /// ```
+  /// ```swift
   /// let tableView = UITableView(frame: .zero)
   /// tableView.registerCell(YourCustomCell.self)
   /// ```

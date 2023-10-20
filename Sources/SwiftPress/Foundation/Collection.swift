@@ -13,7 +13,7 @@ public extension Collection where Element: Equatable {
   ///
   /// Example:
   ///
-  /// ```
+  /// ```swift
   /// let numbers = [1, 2, 3, 4, 5]
   /// let containsThree = numbers.contains(3) // true
   /// let containsTen = numbers.contains(10) // false

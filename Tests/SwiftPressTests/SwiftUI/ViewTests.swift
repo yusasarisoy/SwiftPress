@@ -77,7 +77,7 @@ final class ViewTests: XCTestCase {
     // When
     let centeredView = Text("Centered Text")
       .center()
-    let container = ZStack {
+    let _ = ZStack {
       GeometryReader { geometry in
         centeredView
           .onAppear {

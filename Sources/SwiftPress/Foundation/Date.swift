@@ -27,4 +27,41 @@ public extension Date {
     dateFormatter.dateFormat = format
     return dateFormatter.string(from: self)
   }
+
+  /// Calculates the difference in days between two dates.
+  ///
+  /// - Parameters:
+  ///   - date: The date to calculate the difference from.
+  ///
+  /// - Returns: The number of days between the two dates. A positive result means the given date is in the future.
+  ///
+  /// - Note:
+  ///   This method uses the `Calendar.current` calendar to calculate the difference in days between two dates.
+  ///
+  /// - Example:
+  ///
+  ///   ```swift
+  ///   let dateFormatter = DateFormatter()
+  ///   dateFormatter.dateFormat = "yyyy-MM-dd"
+  ///
+  ///   let today = dateFormatter.date(from: "2023-10-20")!
+  ///   let futureDate = dateFormatter.date(from: "2023-11-10")!
+  ///
+  ///   let daysDifference = today.daysDifference(from: futureDate)
+  ///   print("The difference in days is: \(daysDifference).") // Output: 21
+  ///   ```
+  ///
+  func daysDifference(from date: Date) -> Int {
+    // Calculate the date components (in this case, just days) between two dates.
+    let components = Calendar
+      .current
+      .dateComponents(
+        [.day],
+        from: self,
+        to: date
+      )
+
+    // Return the number of days, defaulting to 0 in case of an error.
+    return components.day ?? .zero
+  }
 }

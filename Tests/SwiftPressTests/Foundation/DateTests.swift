@@ -40,4 +40,25 @@ final class DateTests: XCTestCase {
     // Then
     XCTAssertEqual(formattedDate, "Thursday, October 12, 2023")
   }
+
+  // MARK: - daysDifference(from:)
+
+  func test_whenFindDaysDifference_expectTheDifferenceIsTrue() {
+    // Given
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+
+    guard
+      let date1 = dateFormatter.date(from: "2023-10-20"),
+      let date2 = dateFormatter.date(from: "2023-11-10") else {
+      XCTFail()
+      return
+    }
+
+    // When
+    let daysDifference = date1.daysDifference(from: date2)
+
+    // Then
+    XCTAssertEqual(daysDifference, 21)
+  }
 }

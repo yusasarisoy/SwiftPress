@@ -1,6 +1,6 @@
 import SwiftUI
 
-extension View {
+public extension View {
   /// Conditionally shows or hides a view based on a boolean condition, with the option to provide alternative content when the condition is false.
   ///
   /// Use this modifier to conditionally include a view in your SwiftUI hierarchy based on a boolean condition.

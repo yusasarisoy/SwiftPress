@@ -1,6 +1,5 @@
 import XCTest
 import UIKit
-@testable import SwiftPress
 
 final class UICollectionViewTests: XCTestCase {
 

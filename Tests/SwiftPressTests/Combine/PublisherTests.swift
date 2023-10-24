@@ -1,6 +1,5 @@
 import Combine
 import XCTest
-@testable import SwiftPress
 
 final class PublisherTests: XCTestCase {
 

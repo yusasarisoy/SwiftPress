@@ -1,6 +1,5 @@
 import XCTest
 import SwiftUI
-@testable import SwiftPress
 
 final class ViewTests: XCTestCase {
 

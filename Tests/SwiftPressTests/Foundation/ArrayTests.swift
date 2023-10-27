@@ -103,4 +103,39 @@ final class ArrayTests: XCTestCase {
       "Accessing an element in an empty array should return nil."
     )
   }
+
+  // MARK: - sum()
+
+  func test_whenSumOfIntegers_expectResultIsCorrect() {
+    // Given
+    let numbers = [1, 2, 3, 4, 5]
+
+    // When
+    let sum = numbers.sum()
+
+    // Then
+    XCTAssertEqual(sum, 15, "Sum of integers should be 15")
+  }
+
+  func test_whenSumOfDoubles_expectResultIsCorrect() {
+    // Given
+    let numbers = [1.5, 2.5, 3.0, 4.5]
+
+    // When
+    let sum = numbers.sum()
+
+    // Then
+    XCTAssertEqual(sum, 11.5, "Sum of doubles should be 11.5")
+  }
+
+  func test_whenSumOfEmptyArray_expectResultIsZero() {
+    // Given
+    let emptyArray: [Int] = []
+
+    // When
+    let sum = emptyArray.sum()
+
+    // Then
+    XCTAssertEqual(sum, 0, "Sum of an empty array should be 0")
+  }
 }

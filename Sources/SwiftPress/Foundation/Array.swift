@@ -60,3 +60,30 @@ public extension Array {
     indices.contains(index) ? self[index] : nil
   }
 }
+
+// MARK: - Numeric
+
+public extension Array where Element: Numeric {
+  /// Calculates the sum of all elements in the array.
+  ///
+  /// - Returns: The sum of all elements in the array.
+  ///
+  /// This extension method is available on arrays whose elements conform to the `Numeric` protocol.
+  /// It allows you to easily calculate the sum of all elements in the array.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let numbers = [1, 2, 3, 4, 5]
+  /// let sum = numbers.sum()
+  /// print("The sum of the numbers is \(sum).") // Output: The sum of the numbers is 15.
+  /// ```
+  ///
+  /// - Note: If the array is empty, the result will be the additive identity of the `Numeric` type, which is typically 0.
+  ///
+  /// - SeeAlso: `Numeric`
+  ///
+  func sum() -> Element {
+    reduce(0, +)
+  }
+}

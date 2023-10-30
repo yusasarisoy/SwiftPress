@@ -59,4 +59,28 @@ final class OptionalTests: XCTestCase {
     // Then
     XCTAssertEqual(result, "Hello, World!")
   }
-}
+
+  // MARK: - isNil
+
+  func test_whenCheckingIsNilForGivenNonNilOptional_thenExpectToBeReturnFalse() {
+    // Given
+    let someValue: Int? = 42
+
+    // When
+    let result = someValue.isNil
+
+    // Then
+    XCTAssertFalse(result)
+  }
+
+  func test_whenCheckingIsNilForGivenNilOptional_thenExpectToBeReturnTrue() {
+    // Given
+    let nilValue: Int? = nil
+
+    // When
+    let result = nilValue.isNil
+
+    // Then
+    XCTAssertTrue(result)
+  }
+} 

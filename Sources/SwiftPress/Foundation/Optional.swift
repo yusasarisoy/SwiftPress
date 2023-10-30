@@ -17,4 +17,31 @@ public extension Optional {
   func or(_ defaultValue: Wrapped) -> Wrapped {
     self ?? defaultValue
   }
+
+  /// Checks if the optional value is nil.
+  ///
+  /// - Returns: `true` if the optional is nil, `false` otherwise.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let someValue: Int? = 42
+  /// let nilValue: Int? = nil
+  ///
+  /// if someValue.isNil {
+  ///   print("someValue is nil.")
+  /// } else {
+  ///   print("someValue is not nil.")
+  /// }
+  ///
+  /// if nilValue.isNil {
+  ///   print("nilValue is nil.")
+  /// } else {
+  ///   print("nilValue is not nil.")
+  /// }
+  /// ```
+  ///
+  var isNil: Bool {
+    self == nil
+  }
 }

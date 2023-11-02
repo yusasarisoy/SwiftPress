@@ -139,6 +139,31 @@ final class ArrayTests: XCTestCase {
     XCTAssertEqual(sum, 0, "Sum of an empty array should be 0")
   }
 
+  // MARK: - product()
+
+  func test_whenProductOfIntegers_expectResultIsCorrect() {
+    // Given
+    let integers = [2, 3, 4, 5]
+
+    // Then
+    XCTAssertEqual(
+      integers.product(),
+      2 * 3 * 4 * 5
+    )
+  }
+
+  func test_whenProductOfDoubles_expectResultAccuracyIsCorrect() {
+    // Given
+    let doubles = [2.0, 3.5, 1.5]
+
+    // Then
+    XCTAssertEqual(
+      doubles.product(), 
+      2.0 * 3.5 * 1.5,
+      accuracy: 0.0001
+    )
+  }
+
   // MARK: - isNotEmpty
 
   func test_whenCheckingEmptyArrayWhetherIsNotEmpty_thenReturnFalse() {

@@ -102,4 +102,20 @@ public extension Array where Element: Numeric {
   func sum() -> Element {
     reduce(0, +)
   }
+
+  /// Calculates the product of all elements in the array.
+  ///
+  /// - Returns: The product of all elements in the array.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let numbers = [2, 3, 4]
+  /// let product = numbers.product()
+  /// print("Product of numbers: \(product).")
+  /// ```
+  ///
+  func product() -> Element {
+    reduce(1, *)
+  }
 }

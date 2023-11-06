@@ -201,6 +201,52 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertNil(url)
   }
+
+  // MARK: - truncate(to:)
+
+  func test_whenTruncatedGivenShortStringToLongerLength_thenOriginalStringIsReturned() {
+    // Given
+    let originalString = "Short string"
+
+    // When
+    let truncatedString = originalString.truncate(to: 20)
+
+    // Then
+    XCTAssertEqual(truncatedString, "Short string")
+  }
+
+  func test_whenTruncatedGivenLongStringToShorterLength_thenStringIsTruncatedWithEllipsis() {
+    // Given
+    let originalString = "This is a very long string that needs to be truncated."
+
+    // When
+    let truncatedString = originalString.truncate(to: 20)
+
+    // Then
+    XCTAssertEqual(truncatedString, "This is a very long ...")
+  }
+
+  func test_whenTruncatedToSameLengthStringWithExactLength_thenOriginalStringIsReturned() {
+    // Given
+    let originalString = "Exactly 10"
+
+    // When
+    let truncatedString = originalString.truncate(to: 10)
+
+    // Then
+    XCTAssertEqual(truncatedString, "Exactly 10")
+  }
+
+  func test_whenTruncatedGivenEmptyString_thenEmptyStringIsReturned() {
+    // Given
+    let originalString = String.empty
+
+    // When
+    let truncatedString = originalString.truncate(to: 5)
+
+    // Then
+    XCTAssertEqual(truncatedString, .empty)
+  }
 }
 
 // MARK: - Localizable

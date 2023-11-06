@@ -103,6 +103,27 @@ public extension String {
   func toURL() -> URL? {
     URL(string: self)
   }
+
+  /// Truncates the string to a specified length and appends an ellipsis (...) if needed.
+  ///
+  /// - Parameter length: The maximum length for the truncated string.
+  /// - Returns: The truncated string.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let longString = "This is a very long string that needs to be truncated."
+  /// let truncatedString = longString.truncate(to: 20)
+  /// print(truncatedString)
+  /// ```
+  ///
+  func truncate(to length: Int) -> String {
+    guard self.count <= length else {
+      let index = self.index(self.startIndex, offsetBy: length)
+      return "\(String(self[..<index]))..."
+    }
+    return self
+  }
 }
 
 // MARK: - RawRepresentable

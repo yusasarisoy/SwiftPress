@@ -44,4 +44,25 @@ public extension Optional {
   var isNil: Bool {
     self == nil
   }
+
+  /// Attempts to cast the wrapped value to the specified type using `as?` and returns the result.
+  ///
+  /// - Parameter type: The type to which the wrapped value is attempted to be cast.
+  /// - Returns: An optional of the specified type containing the cast value if successful, or `nil` if the cast fails.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let stringValue: String? = "Hello, World"
+  /// let intValue: Int? = 42
+  ///
+  /// let castedString: String? = stringValue.asType(String.self)
+  /// let castedInt: Int? = intValue.asType(Int.self)
+  ///
+  /// print(castedString ?? "Failed to cast to String") // Output: "Hello, World"
+  /// print(castedInt ?? "Failed to cast to Int")       // Output: 42
+  /// ```
+  func asType<Element>(_ type: Element.Type) -> Element? {
+    self as? Element
+  }
 }

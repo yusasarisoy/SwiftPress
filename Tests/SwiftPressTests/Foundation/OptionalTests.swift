@@ -83,4 +83,39 @@ final class OptionalTests: XCTestCase {
     // Then
     XCTAssertTrue(result)
   }
-} 
+
+  // MARK: - asType(_:)
+
+  func test_whenCastingGivenStringOptionalToString_thenShouldReturnCastedString() {
+    // Given
+    let stringValue: String? = "Hello, World"
+
+    // When
+    let castedString: String? = stringValue.asType(String.self)
+
+    // Then
+    XCTAssertEqual(castedString, "Hello, World")
+  }
+
+  func test_whenCastingGivenIntOptionalToInt_thenShouldReturnCastedInt() {
+    // Given
+    let intValue: Int? = 42
+
+    // When
+    let castedInt: Int? = intValue.asType(Int.self)
+
+    // Then
+    XCTAssertEqual(castedInt, 42)
+  }
+
+  func test_whenCastingGivenInvalidCastingToDifferentType_thenShouldReturnNil() {
+    // Given
+    let invalidValue: String? = "Invalid Value"
+
+    // When
+    let castedInt: Int? = invalidValue.asType(Int.self)
+
+    // Then
+    XCTAssertNil(castedInt)
+  }
+}

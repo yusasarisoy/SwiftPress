@@ -118,4 +118,37 @@ final class OptionalTests: XCTestCase {
     // Then
     XCTAssertNil(castedInt)
   }
+
+  func test_whenTransformingGivenIntOptionalToDouble_thenShouldReturnTransformedValue() {
+    // Given
+    let optionalValue: Int? = 42
+
+    // When
+    let transformedValue = optionalValue.transform(if: { $0 > 20 }) { Double($0) }
+
+    // Then
+    XCTAssertEqual(transformedValue, 42.0)
+  }
+
+  func test_whenTransformingGivenIntOptionalToDoubleWithConditionNotMet_thenShouldReturnOriginalValue() {
+    // Given
+    let optionalValue: Int? = 15
+
+    // When
+    let transformedValue = optionalValue.transform(if: { $0 > 20 }) { Double($0) }
+
+    // Then
+    XCTAssertNil(transformedValue)
+  }
+
+  func test_whenTransformingGivenNilIntOptional_thenShouldReturnNil() {
+    // Given
+    let optionalValue: Int? = nil
+
+    // When
+    let transformedValue = optionalValue.transform(if: { $0 > 20 }) { Double($0) }
+
+    // Then
+    XCTAssertNil(transformedValue)
+  }
 }

@@ -65,4 +65,33 @@ public extension Optional {
   func asType<Element>(_ type: Element.Type) -> Element? {
     self as? Element
   }
+
+  /// Transforms and returns an optional value based on a condition.
+  ///
+  /// - Parameters:
+  ///   - condition: A closure that defines the condition for transformation.
+  ///   - transform: A closure that specifies the transformation to apply when the condition is met.
+  /// - Returns: The transformed optional value if the condition is met, or the original optional value.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let optionalValue: Int? = 42
+  /// let transformedValue = optionalValue.transform(if: { $0 > 20 }) { $0 * 2 }
+  /// print(transformedValue) // Output will be Optional(84).
+  ///
+  /// let nilValue: Int? = nil
+  /// let nilTransformedValue = nilValue.transform(if: { $0 > 20 }) { $0 * 2 }
+  /// print(nilTransformedValue) // Output will be nil.
+  /// ```
+  ///
+  func transform<Element>(
+    if condition: (Wrapped) -> Bool,
+    _ transform: (Wrapped) -> Element
+  ) -> Element? {
+    guard let self, condition(self) else {
+      return asType(Element.self)
+    }
+    return transform(self)
+  }
 }

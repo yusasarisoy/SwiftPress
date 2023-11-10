@@ -1,12 +1,12 @@
 <div align="center">
-  <img width="100" height="100" alt="SwiftPress" src="https://i.ibb.co/1qfwtvq/Swift-Press.png">
+  <img width="100" height="100" alt="SwiftPress" src="https://i.ibb.co/16PW2CL/swiftpress.png">
   </br>
   <h1><b>SwiftPress</b></h1>
 </div>
 
 <div align="center">
 
-![](https://img.shields.io/badge/Editor-Xcode-informational?style=flat&logo=xcode&logoColor=white&color=FC3F1B) ![](https://img.shields.io/badge/Language-Swift-informational?style=flat&logo=swift&logoColor=white&color=FC3F1B)
+![](https://img.shields.io/badge/Editor-Xcode-informational?style=flat&logo=xcode&logoColor=white&color=FDC00E) ![](https://img.shields.io/badge/Language-Swift-informational?style=flat&logo=swift&logoColor=white&color=FDC00E)
 
 </div>
 

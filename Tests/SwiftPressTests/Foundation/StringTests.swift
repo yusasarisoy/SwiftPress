@@ -247,6 +247,41 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertEqual(truncatedString, .empty)
   }
+
+  // MARK: - isNumeric
+
+  func test_givenValueIsNumeric_shouldReturnTrueForNumericString() {
+    // Given
+    let numericString = "12345"
+
+    // When
+    let isNumeric = numericString.isNumeric
+
+    // Then
+    XCTAssertTrue(isNumeric, "Expected true for a numeric string.")
+  }
+
+  func test_givenValueIsNumeric_shouldReturnFalseForNonNumericString() {
+    // Given
+    let nonNumericString = "abc123"
+
+    // When
+    let isNumeric = nonNumericString.isNumeric
+
+    // Then
+    XCTAssertFalse(isNumeric, "Expected false for a non-numeric string.")
+  }
+
+  func test_givenValueIsNumeric_shouldReturnFalseForEmptyString() {
+    // Given
+    let emptyString: String = .empty
+
+    // When
+    let isNumeric = emptyString.isNumeric
+
+    // Then
+    XCTAssertFalse(isNumeric, "Expected false for an empty string.")
+  }
 }
 
 // MARK: - Localizable

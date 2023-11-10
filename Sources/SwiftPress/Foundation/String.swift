@@ -124,6 +124,24 @@ public extension String {
     }
     return self
   }
+
+  /// Checks if the string contains only numeric characters.
+  ///
+  /// - Returns: `true` if the string is numeric; otherwise, `false`.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let numericString = "12345"
+  /// let nonNumericString = "abc123"
+  ///
+  /// print(numericString.isNumeric) // Output will be true
+  /// print(nonNumericString.isNumeric) // Output will be false
+  /// ```
+  ///
+  var isNumeric: Bool {
+    !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted).isNil
+  }
 }
 
 // MARK: - RawRepresentable

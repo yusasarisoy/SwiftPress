@@ -24,4 +24,29 @@ public extension NSLayoutConstraint {
   static func activate(_ constraints: [NSLayoutConstraint]) {
     constraints.forEach { $0.isActive = true }
   }
+
+  /// Deactivates an array of constraints.
+  ///
+  /// This method provides a convenient way to deactivate multiple constraints at once.
+  ///
+  /// - Parameter constraints: An array of constraints to deactivate.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// // Assuming you have two views: view1 and view2
+  ///
+  /// // Creating a constraint that makes view1's leading edge equal to view2's leading edge
+  /// let leadingConstraint = view1.leadingAnchor.constraint(equalTo: view2.leadingAnchor)
+  ///
+  /// // Activating the constraint
+  /// leadingConstraint.isActive = true
+  ///
+  /// // Later, if you want to deactivate the constraint
+  /// leadingConstraint.isActive = false
+  /// ```
+  /// 
+  static func deactivate(_ constraints: [NSLayoutConstraint]) {
+    constraints.forEach { $0.isActive = false }
+  }
 }

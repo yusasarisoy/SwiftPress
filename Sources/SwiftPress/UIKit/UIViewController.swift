@@ -39,4 +39,32 @@ public extension UIViewController {
       animated: true
     )
   }
+
+  /// Dismisses the keyboard when tapping outside of the keyboard or any interactive view.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// final class MyViewController: UIViewController {
+  ///
+  ///   // MARK: - Lifecycle Methods
+  ///
+  ///   override func viewDidLoad() {
+  ///     super.viewDidLoad()
+  ///     dismissKeyboardOnTap()
+  ///   }
+  /// }
+  ///
+  /// ```
+  ///
+  func dismissKeyboardOnTap() {
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+    tapGesture.cancelsTouchesInView = false
+    view.addGestureRecognizer(tapGesture)
+  }
+  
+  @objc
+  func dismissKeyboard() {
+    view.endEditing(true)
+  }
 }

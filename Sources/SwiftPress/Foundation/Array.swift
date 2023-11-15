@@ -119,3 +119,31 @@ public extension Array where Element: Numeric {
     reduce(1, *)
   }
 }
+
+public extension Array where Element: Hashable {
+  /// Returns a new array with duplicate elements removed.
+  ///
+  /// This method preserves the order of elements while removing duplicates.
+  ///
+  /// - Returns: A new array with unique elements in the same order as the original array.
+  ///
+  /// - Complexity: O(n), where n is the number of elements in the array.
+  ///
+  /// - Note: The order of elements in the resulting array is based on the order of the first occurrences
+  ///         of each element in the original array.
+  ///
+  /// - Example:
+  ///
+  /// ```swift
+  /// let numbers = [1, 2, 2, 3, 4, 4, 5]
+  /// let uniqueNumbers = numbers.removingDuplicates() // [1, 2, 3, 4, 5]
+  /// ```
+  ///
+  /// - SeeAlso: `Set`
+  /// - SeeAlso: `filter(_:)`
+  ///
+  func removingDuplicates() -> [Element] {
+    var uniqueElements = Set<Element>()
+    return filter { uniqueElements.insert($0).inserted }
+  }
+}

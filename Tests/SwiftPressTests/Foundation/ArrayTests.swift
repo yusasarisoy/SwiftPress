@@ -200,4 +200,48 @@ final class ArrayTests: XCTestCase {
     // Then
     XCTAssertEqual(results, [true, false])
   }
+
+  // MARK: - removingDuplicates()
+
+  func test_whenRemovingDuplicatesFromGivenArrayWithDuplicates_thenUniqueArray() {
+    // Given
+    let arrayWithDuplicates = [1, 2, 2, 3, 4, 4, 5]
+
+    // When
+    let uniqueArray = arrayWithDuplicates.removingDuplicates()
+
+    // Then
+    XCTAssertEqual(uniqueArray, [1, 2, 3, 4, 5], "The array should have duplicates removed.")
+  }
+
+  func test_whenRemovingDuplicatesFromGivenEmptyArray_thenEmptyArray() {
+    // Given
+    let emptyArray: [Int] = []
+
+    // When
+    let uniqueArray = emptyArray.removingDuplicates()
+
+    // Then
+    XCTAssertEqual(uniqueArray, [], "The result should be an empty array.")
+  }
+
+  func test_whenRemovingDuplicatesFromGivenArrayWithObjects_thenUniqueArray() {
+    // Given
+    struct CustomObject: Hashable {
+      let id: Int
+    }
+
+    let array = [
+      CustomObject(id: 1), 
+      CustomObject(id: 2), 
+      CustomObject(id: 1),
+      CustomObject(id: 3)
+    ]
+
+    // When
+    let uniqueArray = array.removingDuplicates()
+
+    // Then
+    XCTAssertEqual(uniqueArray.count, 3, "The array should have duplicates removed.")
+  }
 }

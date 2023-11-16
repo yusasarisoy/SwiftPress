@@ -282,6 +282,41 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertFalse(isNumeric, "Expected false for an empty string.")
   }
+
+  // MARK: - safeToInt()
+
+  func test_whenCallingSafeToIntForGivenNumericString_thenShouldReturnInteger() {
+    // Given
+    let numericString = "123"
+
+    // When
+    let result = numericString.safeToInt()
+
+    // Then
+    XCTAssertEqual(result, 123, "Conversion of numeric string should result in 123.")
+  }
+
+  func test_whenCallingSafeToIntForGivenNonNumericString_thenShouldReturnNil() {
+    // Given
+    let nonNumericString = "abc"
+
+    // When
+    let result = nonNumericString.safeToInt()
+
+    // Then
+    XCTAssertNil(result, "Conversion of non-numeric string should result in nil.")
+  }
+
+  func test_whenCallingSafeToIntForGivenEmptyString_thenShouldReturnNil() {
+    // Given
+    let emptyString: String = .empty
+
+    // When
+    let result = emptyString.safeToInt()
+
+    // Then
+    XCTAssertNil(result, "Conversion of empty string should result in nil.")
+  }
 }
 
 // MARK: - Localizable

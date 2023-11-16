@@ -142,6 +142,33 @@ public extension String {
   var isNumeric: Bool {
     !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted).isNil
   }
+
+  /// Safely converts the string to an integer. Returns `nil` if conversion fails.
+  ///
+  /// This method attempts to convert the string to an integer using the `Int` initializer.
+  /// If the conversion is successful, it returns the resulting integer value.
+  /// If the conversion fails, it returns `nil`, preventing potential runtime crashes.
+  ///
+  /// - Returns: An integer value if conversion is successful, otherwise `nil`.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let numericString = "123"
+  /// let integerValue = numericString.safeToInt() // Returns Optional(123)
+  ///
+  /// let nonNumericString = "abc"
+  /// let nonNumericValue = nonNumericString.safeToInt() // Returns nil
+  /// ```
+  ///
+  /// - Note: This method uses the `Int` initializer for conversion, and it may return `nil`
+  ///   if the string does not represent a valid integer.
+  /// - Warning: If the string represents a large integer that exceeds the representable range
+  ///   of the `Int` type, the result may be truncated.
+  ///
+  func safeToInt() -> Int? {
+    Int(self)
+  }
 }
 
 // MARK: - RawRepresentable

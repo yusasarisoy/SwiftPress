@@ -244,4 +244,45 @@ final class ArrayTests: XCTestCase {
     // Then
     XCTAssertEqual(uniqueArray.count, 3, "The array should have duplicates removed.")
   }
+
+  // MARK: - chunked(into:)
+
+  func test_whenChunkedGivenArrayWithElementsWithValidSize_thenChunksCreated() {
+    // Given
+    let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    // When
+    let chunks = numbers.chunked(into: 3)
+  
+    // Then
+    XCTAssertEqual(chunks.count, 3)
+    XCTAssertEqual(chunks[0], [1, 2, 3])
+    XCTAssertEqual(chunks[1], [4, 5, 6])
+    XCTAssertEqual(chunks[2], [7, 8, 9])
+  }
+
+  func testwhenChunkedGivenEmptyArray_thenEmptyChunksCreated() {
+    // Given
+    let emptyArray = [Int]()
+
+    // When
+    let chunks = emptyArray.chunked(into: 3)
+
+    // Then
+    XCTAssertTrue(chunks.isEmpty)
+  }
+
+  func test_whenChunkedGivenArrayWithElementsWithUnevenSize_thenUnevenChunksCreated() {
+    // Given
+    let numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+
+    // When
+    let chunks = numbers.chunked(into: 3)
+
+    // Then
+    XCTAssertEqual(chunks.count, 3)
+    XCTAssertEqual(chunks[0], [1, 2, 3])
+    XCTAssertEqual(chunks[1], [4, 5, 6])
+    XCTAssertEqual(chunks[2], [7, 8])
+  }
 }

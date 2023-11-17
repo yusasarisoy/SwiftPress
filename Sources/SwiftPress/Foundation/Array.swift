@@ -75,6 +75,25 @@ public extension Array {
   var isNotEmpty: Bool {
     !isEmpty
   }
+
+  /// Splits the array into chunks of a specified size.
+  ///
+  /// - Parameter chunkSize: The size of each chunk.
+  /// - Returns: An array of arrays, where each inner array represents a chunk of elements.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  /// let chunks = numbers.chunked(into: 3)
+  /// // Result: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+  /// ```
+  ///
+  func chunked(into chunkSize: Int) -> [[Element]] {
+    stride(from: .zero, to: count, by: chunkSize).map {
+      Array(self[$0..<Swift.min($0 + chunkSize, count)])
+    }
+  }
 }
 
 // MARK: - Numeric

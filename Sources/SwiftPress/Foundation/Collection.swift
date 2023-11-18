@@ -1,5 +1,32 @@
 import XCTest
 
+public extension Collection {
+  /// Filters elements based on a custom condition and applies a transformation to the filtered elements.
+  ///
+  /// - Parameters:
+  ///   - condition: A closure that takes an element and returns a Boolean value indicating whether the element should be included.
+  ///   - transform: A closure that takes an element and returns a transformed value.
+  /// - Returns: An array containing the transformed values of the elements that satisfy the condition.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let numbers = [1, 2, 3, 4, 5]
+  /// let squaredEvenNumbers = numbers.filterAndTransform(
+  ///   condition: { $0 % 2 == 0 },
+  ///   transform: { $0 * $0 }
+  /// )
+  /// // Result: [4, 16]
+  /// ```
+  ///
+  func filterAndTransform<T>(
+    condition: (Element) -> Bool,
+    transform: (Element) -> T
+  ) -> [T] {
+    filter(condition).map(transform)
+  }
+}
+
 /// An extension to easily check if a collection contains a specific element.
 public extension Collection where Element: Equatable {
   /// Returns a Boolean value indicating whether the collection contains the specified element.

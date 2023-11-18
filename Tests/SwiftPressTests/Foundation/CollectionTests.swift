@@ -16,6 +16,36 @@ final class CollectionTests: XCTestCase {
 
   // MARK: - contains(_:)
 
+  func test_whenFilteringAndTransformingGivenArrayWithElements_thenTransformedValuesReturned() {
+    // Given
+    let numbers = [1, 2, 3, 4, 5]
+
+    // When
+    let squaredEvenNumbers = numbers.filterAndTransform(
+      condition: { $0 % 2 == 0 },
+      transform: { $0 * $0 }
+    )
+
+    // Then
+    XCTAssertEqual(squaredEvenNumbers, [4, 16])
+  }
+
+  func test_whenFilteringAndTransformingGivenEmptyArray_thenEmptyArrayReturned() {
+    // Given
+    let emptyArray = [Int]()
+
+    // When
+    let transformedValues = emptyArray.filterAndTransform(
+      condition: { $0 % 2 == 0 }, 
+      transform: { $0 * $0 }
+    )
+
+    // Then
+    XCTAssertTrue(transformedValues.isEmpty)
+  }
+
+  // MARK: - contains(_:)
+
   func test_whenContainsElementInArray_expectThreeIsInTheArray() {
     // Given
     let numbers = [1, 2, 3, 4, 5]

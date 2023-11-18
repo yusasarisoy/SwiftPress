@@ -52,3 +52,23 @@ public extension Collection where Element: Equatable {
     contains { $0 == element }
   }
 }
+
+public extension Collection where Element: Hashable {
+  /// Finds the difference between two collections.
+  ///
+  /// - Parameter other: The collection to compare against.
+  /// - Returns: An array containing the elements that are unique to the current collection.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let collection1 = [1, 2, 3, 4, 5]
+  /// let collection2 = [3, 4, 5, 6, 7]
+  /// let difference = collection1.difference(from: collection2)
+  /// // Result: [1, 2]
+  /// ```
+  ///
+  func difference(from other: Self) -> [Element] {
+    filter { !Set(other).contains($0) }
+  }
+}

@@ -78,4 +78,18 @@ final class CollectionTests: XCTestCase {
     // Then
     XCTAssertFalse(containsOne, "Empty array should not contain any elements")
   }
+
+  // MARK: - difference(from:)
+
+  func test_whenFindingDifferenceBetweenTwoArrays_shouldReturnElementsUniqueToFirstCollection() {
+    // Given
+    let collection1 = [1, 2, 3, 4, 5]
+    let collection2 = [3, 4, 5, 6, 7]
+
+    // When
+    let difference = collection1.difference(from: collection2)
+
+    // Then
+    XCTAssertEqual(difference, [1, 2], "Difference calculation is incorrect")
+  }
 }

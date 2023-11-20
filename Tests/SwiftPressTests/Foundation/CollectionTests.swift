@@ -129,4 +129,28 @@ final class CollectionTests: XCTestCase {
     // Then
     XCTAssertEqual(difference, [1, 2], "Difference calculation is incorrect")
   }
+
+  // MARK: - average()
+
+  func test_whenCalculateAverageWithNonEmptyCollection_shouldReturnAverage() {
+    // Given
+    let numbers = [1.0, 2.0, 3.0, 4.0, 5.0]
+
+    // When
+    let average = numbers.average()
+
+    // Then
+    XCTAssertEqual(average.orZero, 3.0, accuracy: 0.0001, "Average calculation is incorrect")
+  }
+
+  func test_whenCalculateAverageWithEmptyCollection_shouldReturnNil() {
+    // Given
+    let emptyCollection: [Double] = []
+
+    // When
+    let average = emptyCollection.average()
+
+    // Then
+    XCTAssertNil(average, "Average calculation for empty collection should be nil")
+  }
 }

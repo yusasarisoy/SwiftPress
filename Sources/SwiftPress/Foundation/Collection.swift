@@ -91,3 +91,25 @@ public extension Collection where Element: Hashable {
     filter { !Set(other).contains($0) }
   }
 }
+
+// MARK: - BinaryFloatingPoint
+
+public extension Collection where Element: BinaryFloatingPoint {
+  /// Calculates the average value of numerical elements in the collection.
+  ///
+  /// - Returns: The average value, or `nil` if the collection is empty.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let numbers = [1.0, 2.0, 3.0, 4.0, 5.0]
+  /// let average = numbers.average()
+  /// // Result: Optional(3.0)
+  /// ```
+  ///
+  func average() -> Element? {
+    guard isNotEmpty else { return nil }
+    let sum = reduce(0.0, +)
+    return sum / Element(numericCast(count))
+  }
+}

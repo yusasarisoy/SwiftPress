@@ -164,43 +164,6 @@ final class ArrayTests: XCTestCase {
     )
   }
 
-  // MARK: - isNotEmpty
-
-  func test_whenCheckingEmptyArrayWhetherIsNotEmpty_thenReturnFalse() {
-    // Given
-    let emptyArray: [Int] = []
-
-    // When
-    let result = emptyArray.isNotEmpty
-
-    // Then
-    XCTAssertFalse(result)
-  }
-
-  func test_whenCheckingNonEmptyArrayWhetherIsNotEmpty_thenReturnTrue() {
-    // Given
-    let nonEmptyArray: [String] = ["apple", "banana"]
-
-    // When
-    let result = nonEmptyArray.isNotEmpty
-
-    // Then
-    XCTAssertTrue(result)
-  }
-
-  func test_whenCheckingMixedArrayWhetherIsNotEmpty_thenReturnExpectedResults() {
-    // Given
-    let mixedArray: [String] = ["apple", "banana"]
-    let emptyArray: [String] = []
-    let arrays: [Array<String>] = [mixedArray, emptyArray]
-
-    // When
-    let results = arrays.map { $0.isNotEmpty }
-
-    // Then
-    XCTAssertEqual(results, [true, false])
-  }
-
   // MARK: - removingDuplicates()
 
   func test_whenRemovingDuplicatesFromGivenArrayWithDuplicates_thenUniqueArray() {

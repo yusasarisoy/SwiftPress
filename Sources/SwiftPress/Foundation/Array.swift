@@ -60,22 +60,6 @@ public extension Array {
     indices.contains(index) ? self[index] : nil
   }
 
-  /// An extension for arrays that adds the `isNotEmpty` property, allowing you to check if the array is not empty.
-  ///
-  /// Example:
-  ///
-  /// ```swift
-  /// let emptyArray: [Int] = []
-  /// let nonEmptyArray: [String] = ["apple", "banana"]
-  ///
-  /// print("Is emptyArray not empty? \(emptyArray.isNotEmpty)") // false
-  /// print("Is nonEmptyArray not empty? \(nonEmptyArray.isNotEmpty)") // true
-  /// ```
-  ///
-  var isNotEmpty: Bool {
-    !isEmpty
-  }
-
   /// Splits the array into chunks of a specified size.
   ///
   /// - Parameter chunkSize: The size of each chunk.

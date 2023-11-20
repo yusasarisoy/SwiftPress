@@ -25,6 +25,22 @@ public extension Collection {
   ) -> [T] {
     filter(condition).map(transform)
   }
+
+  /// An extension for arrays that adds the `isNotEmpty` property, allowing you to check if the array is not empty.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let emptyArray: [Int] = []
+  /// let nonEmptyArray: [String] = ["apple", "banana"]
+  ///
+  /// print("Is emptyArray not empty? \(emptyArray.isNotEmpty)") // false
+  /// print("Is nonEmptyArray not empty? \(nonEmptyArray.isNotEmpty)") // true
+  /// ```
+  ///
+  var isNotEmpty: Bool {
+    !isEmpty
+  }
 }
 
 /// An extension to easily check if a collection contains a specific element.

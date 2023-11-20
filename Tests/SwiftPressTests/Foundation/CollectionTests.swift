@@ -14,7 +14,7 @@ final class CollectionTests: XCTestCase {
 
   // MARK: - Tests
 
-  // MARK: - contains(_:)
+  // MARK: - filterAndTransform(condition:transform:)
 
   func test_whenFilteringAndTransformingGivenArrayWithElements_thenTransformedValuesReturned() {
     // Given

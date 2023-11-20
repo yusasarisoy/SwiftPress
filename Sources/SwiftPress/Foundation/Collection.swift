@@ -43,7 +43,8 @@ public extension Collection {
   }
 }
 
-/// An extension to easily check if a collection contains a specific element.
+// MARK: - Equatable
+
 public extension Collection where Element: Equatable {
   /// Returns a Boolean value indicating whether the collection contains the specified element.
   ///
@@ -68,6 +69,8 @@ public extension Collection where Element: Equatable {
     contains { $0 == element }
   }
 }
+
+// MARK: - Hashable
 
 public extension Collection where Element: Hashable {
   /// Finds the difference between two collections.

@@ -169,6 +169,25 @@ public extension String {
   func safeToInt() -> Int? {
     Int(self)
   }
+
+  /// Capitalizes the first letter of each word in the string.
+  ///
+  /// - Returns: A new string with the first letter of each word capitalized.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let inputString = "hello world"
+  /// let capitalizedString = inputString.capitalizeEachWord()
+  /// // Result: "Hello World"
+  /// ```
+  ///
+  func capitalizeEachWord() -> String {
+    self
+      .components(separatedBy: " ")
+      .map { $0.prefix(1).capitalized + $0.dropFirst() }
+      .joined(separator: " ")
+  }
 }
 
 // MARK: - RawRepresentable

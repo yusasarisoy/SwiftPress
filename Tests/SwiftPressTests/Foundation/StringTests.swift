@@ -317,6 +317,19 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertNil(result, "Conversion of empty string should result in nil.")
   }
+
+  // MARK: - capitalizeEachWord()
+
+  func test_whenCapitalizeEachWord_shouldReturnCapitalizedWords() {
+    // Given
+    let inputString = "hello world"
+
+    // When
+    let capitalizedString = inputString.capitalizeEachWord()
+
+    // Then
+    XCTAssertEqual(capitalizedString, "Hello World", "Capitalize each word is incorrect.")
+  }
 }
 
 // MARK: - Localizable

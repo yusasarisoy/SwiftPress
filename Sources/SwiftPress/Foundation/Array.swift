@@ -149,4 +149,25 @@ public extension Array where Element: Hashable {
     var uniqueElements = Set<Element>()
     return filter { uniqueElements.insert($0).inserted }
   }
+
+  /// An extension on arrays containing hashable elements, providing a method to find the most frequently occurring element.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let array = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+  /// let mostFrequentElement = array.mostFrequent()
+  /// print(mostFrequentElement) // Output: Optional(4)
+  /// ```
+  ///
+  /// - Note: This extension works only on arrays with elements conforming to the `Hashable` protocol.
+  ///
+  /// - Returns: The most frequent element in the array, or `nil` if the array is empty.
+  ///
+  /// - Complexity: O(n), where n is the number of elements in the array.
+  ///
+  func mostFrequent() -> Element? {
+    let counts = reduce(into: [:]) { $0[$1, default: 0] += 1 }
+    return counts.max { $0.1 < $1.1 }?.key
+  }
 }

@@ -248,4 +248,39 @@ final class ArrayTests: XCTestCase {
     XCTAssertEqual(chunks[1], [4, 5, 6])
     XCTAssertEqual(chunks[2], [7, 8])
   }
+
+  // MARK: - mostFrequent()
+
+  func test_whenFindingMostFrequentOfGivenArrayWithFrequencies_thenShouldReturnMostFrequentElement() {
+    // Given
+    let array = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+
+    // When
+    let mostFrequent = array.mostFrequent()
+
+    // Then
+    XCTAssertEqual(mostFrequent, 4, "The most frequent element in the array is 4.")
+  }
+
+  func test_whenFindingMostFrequentOfGivenEmptyArray_thenShouldReturnNil() {
+    // Given
+    let emptyArray: [Int] = []
+
+    // When
+    let mostFrequent = emptyArray.mostFrequent()
+
+    // Then
+    XCTAssertNil(mostFrequent, "The array is empty, so there is no most frequent element.")
+  }
+
+  func test_whenFindingMostFrequentOfGivenArrayWithSingleElement_thenShouldReturnThatElement() {
+    // Given
+    let array = [42]
+
+    // When
+    let mostFrequent = array.mostFrequent()
+
+    // Then
+    XCTAssertEqual(mostFrequent, 42, "The array has only one element, so it is the most frequent.")
+  }
 }

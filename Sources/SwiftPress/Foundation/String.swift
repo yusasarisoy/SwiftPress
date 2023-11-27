@@ -188,6 +188,26 @@ public extension String {
       .map { $0.prefix(1).capitalized + $0.dropFirst() }
       .joined(separator: " ")
   }
+
+  /// Converts the string into a URL-friendly slug.
+  ///
+  /// This method replaces spaces with dashes, removes special characters, and converts the string to lowercase.
+  ///
+  /// - Returns: A URL-friendly slug generated from the string.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let title = "Swift Extension Example"
+  /// let slug = title.slugify()
+  /// print(slug) // Output: "swift-extension-example"
+  /// ```
+  ///
+  func slugify() -> String {
+    let slug = replacingOccurrences(of: " ", with: "-")
+      .replacingOccurrences(of: "[^a-zA-Z0-9-]", with: String.empty, options: .regularExpression)
+    return slug.lowercased()
+  }
 }
 
 // MARK: - RawRepresentable

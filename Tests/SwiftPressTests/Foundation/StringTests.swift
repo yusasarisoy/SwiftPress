@@ -330,6 +330,44 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertEqual(capitalizedString, "Hello World", "Capitalize each word is incorrect.")
   }
+
+  // MARK: - slugify()
+
+  func test_whenSlugifyTheGivenStringWithSpacesAndSpecialCharacters_thenShouldReturnValidSlug() {
+    // Given
+    let inputString = "Hello World! This is a Test."
+    let expectedSlug = "hello-world-this-is-a-test"
+
+    // When
+    let resultSlug = inputString.slugify()
+
+    // Then
+    XCTAssertEqual(resultSlug, expectedSlug, "The slugified string should match the expected result.")
+  }
+
+  func test_whenSlugifyTheGivenEmptyString_thenShouldReturnEmptySlug() {
+    // Given
+    let inputString: String = .empty
+    let expectedSlug: String = .empty
+
+    // When
+    let resultSlug = inputString.slugify()
+
+    // Then
+    XCTAssertEqual(resultSlug, expectedSlug, "The slugified string of an empty string should be empty.")
+  }
+
+  func test_whenSlugifyTheGivenStringWithOnlySpecialCharacters_thenShouldReturnEmptySlug() {
+    // Given
+    let inputString = "!@#$%^&*()"
+    let expectedSlug: String = .empty
+
+    // When
+    let resultSlug = inputString.slugify()
+
+    // Then
+    XCTAssertEqual(resultSlug, expectedSlug, "The slugified string of a string with only special characters should be empty.")
+  }
 }
 
 // MARK: - Localizable

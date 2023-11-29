@@ -39,4 +39,30 @@ final class IntTests: XCTestCase {
     // When, Then
     XCTAssertTrue(zero.isEven, "Zero should be identified as even.")
   }
+
+  // MARK: - isOdd
+
+  func test_whenCheckWhetherGivenOddNumberIsOdd_thenShouldReturnTrue() {
+    // Given
+    let oddNumber = 37
+
+    // When, Then
+    XCTAssertTrue(oddNumber.isOdd, "The odd number should be identified as odd.")
+  }
+
+  func test_whenCheckWhetherGivenEvenNumberIsOdd_thenShouldReturnFalse() {
+    // Given
+    let evenNumber = 42
+
+    // When, Then
+    XCTAssertFalse(evenNumber.isOdd, "The even number should not be identified as odd.")
+  }
+
+  func test_whenCheckWhetherGivenZeroIsOdd_thenShouldReturnFalse() {
+    // Given
+    let zero = 0
+
+    // When, Then
+    XCTAssertFalse(zero.isOdd, "Zero should not be identified as odd.")
+  }
 }

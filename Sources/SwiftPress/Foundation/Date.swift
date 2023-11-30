@@ -64,4 +64,24 @@ public extension Date {
     // Return the number of days, defaulting to 0 in case of an error.
     return components.day ?? .zero
   }
+
+  /// Checks if the date is in the past.
+  ///
+  /// - Returns: `true` if the date is in the past, `false` otherwise.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let currentDate = Date()
+  /// let pastDate = Date(timeIntervalSince1970: 0)
+  /// if pastDate.isInPast {
+  ///   print("The date is in the past.")
+  /// } else {
+  ///   print("The date is not in the past.")
+  /// }
+  /// ```
+  ///
+  var isInPast: Bool {
+    self < Date()
+  }
 }

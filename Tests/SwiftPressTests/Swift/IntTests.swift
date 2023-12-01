@@ -65,4 +65,27 @@ final class IntTests: XCTestCase {
     // When, Then
     XCTAssertFalse(zero.isOdd, "Zero should not be identified as odd.")
   }
+
+  // MARK: - isPrime
+
+  func test_whenCheckWhetherGivenPrimeNumberIsPrime_thenShouldReturnTrue() {
+    // Given, When, Then
+    XCTAssertTrue(17.isPrime, "The number 17 should be identified as a prime number.")
+  }
+
+  func test_whenCheckWhetherGivenNonPrimeNumberIsPrime_thenShouldReturnFalse() {
+    // Given, When, Then
+    XCTAssertFalse(15.isPrime, "The number 15 should not be identified as a prime number.")
+  }
+
+  func test_whenCheckWhetherGivenNegativeNumberIsPrime_thenShouldReturnFalse() {
+    // Given, When, Then
+    XCTAssertFalse((-5).isPrime, "Negative numbers should not be identified as prime numbers.")
+  }
+
+  func test_whenCheckWhetherGivenZeroAndOneIsPrime_thenShouldReturnFalse() {
+    // Given, When, Then
+    XCTAssertFalse(0.isPrime, "The number 0 should not be identified as a prime number.")
+    XCTAssertFalse(1.isPrime, "The number 1 should not be identified as a prime number.")
+  }
 }

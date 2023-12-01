@@ -36,4 +36,32 @@ public extension Int {
   var isOdd: Bool {
     self % 2 != 0
   }
+
+  /// Checks if the integer is a prime number.
+  ///
+  /// - Returns: `true` if the integer is a prime number, `false` otherwise.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let primeNumber = 17
+  /// if primeNumber.isPrime {
+  ///   print("It's a prime number.")
+  /// } else {
+  ///   print("It's not a prime number.")
+  /// }
+  /// ```
+  ///
+  var isPrime: Bool {
+    guard self > 1 else {
+      return false
+    }
+
+    for number in 2..<self {
+      if self % number == 0 {
+        return false
+      }
+    }
+    return true
+  }
 }

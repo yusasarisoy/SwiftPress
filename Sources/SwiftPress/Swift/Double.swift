@@ -28,4 +28,20 @@ public extension Double {
     let multiplier = pow(10, Double(places))
     return (self * multiplier).rounded() / multiplier
   }
+
+  /// Converts degrees to radians.
+  ///
+  /// - Returns: The value in radians.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let degrees = 90.0
+  /// let radians = degrees.degreesToRadians
+  /// print(radians) // Outputs: 1.5708 (approximately)
+  /// ```
+  /// 
+  var degreesToRadians: Double {
+    self * .pi / 180.0
+  }
 }

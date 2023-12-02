@@ -14,7 +14,7 @@ public extension Double {
   /// print(roundedValue) // 3.14
   /// ```
   ///
-  /// This extension method allows you to round a double to a specific number of decimal places. 
+  /// This extension method allows you to round a double to a specific number of decimal places.
   /// It works by multiplying the double by a power of 10 to move the decimal point, rounding the result, and then dividing it back to the original scale.
   /// This is useful for formatting numbers for display or any scenario requiring specific decimal precision.
   ///

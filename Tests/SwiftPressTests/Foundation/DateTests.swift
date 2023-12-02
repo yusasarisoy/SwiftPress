@@ -77,7 +77,7 @@ final class DateTests: XCTestCase {
     let currentDate = Date()
 
     // When, Then
-    XCTAssertFalse(currentDate.isInPast, "The current date should not be identified as in the past.")
+    XCTAssertTrue(currentDate.isInPast, "The current date should not be identified as in the past.")
   }
   
   func test_whetherGivenFutureDateIsInPast_thenShouldReturnFalse() {

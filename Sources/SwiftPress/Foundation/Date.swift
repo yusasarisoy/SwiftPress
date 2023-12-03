@@ -82,6 +82,6 @@ public extension Date {
   /// ```
   ///
   var isInPast: Bool {
-    self < Date()
+    self <= Date()
   }
 }

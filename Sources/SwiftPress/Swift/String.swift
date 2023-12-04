@@ -208,6 +208,28 @@ public extension String {
       .replacingOccurrences(of: "[^a-zA-Z0-9-]", with: String.empty, options: .regularExpression)
     return slug.lowercased()
   }
+
+  /// Counts the occurrences of each character in the string.
+  ///
+  /// - Returns: A dictionary where keys are characters and values are their occurrences.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let text = "hello"
+  /// let characterCounts = text.countOccurrences()
+  /// print(characterCounts) // Outputs: ["h": 1, "e": 1, "l": 2, "o": 1]
+  /// ```
+  ///
+  func countOccurrences() -> [Character: Int] {
+    var occurrences: [Character: Int] = [:]
+
+    for character in self {
+      occurrences[character, default: 0] += 1
+    }
+
+    return occurrences
+  }
 }
 
 // MARK: - RawRepresentable

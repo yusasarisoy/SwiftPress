@@ -368,6 +368,49 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertEqual(resultSlug, expectedSlug, "The slugified string of a string with only special characters should be empty.")
   }
+
+  // MARK: - countOccurrences()
+
+  func test_whenCountOccurrencesOfStringWithVariousCharacters_thenReturnsCorrectCharacterCounts() {
+    // Given
+    let text = "hello"
+
+    // When
+    let characterCounts = text.countOccurrences()
+
+    // Then
+    XCTAssertEqual(
+      characterCounts,
+      ["h": 1, "e": 1, "l": 2, "o": 1],
+      "Should return the correct character occurrences"
+    )
+  }
+
+  func test_whenCountOccurrencesOfEmptyString_thenReturnsEmptyDictionary() {
+    // Given
+    let emptyString = ""
+
+    // When
+    let characterCounts = emptyString.countOccurrences()
+
+    // Then
+    XCTAssertTrue(characterCounts.isEmpty, "Should return an empty dictionary for an empty string")
+  }
+
+  func test_whenCountOccurrencesOfStringWithRepeatedCharacters_thenReturnsCorrectCharacterCounts() {
+    // Given
+    let text = "programming"
+
+    // When
+    let characterCounts = text.countOccurrences()
+
+    // Then
+    XCTAssertEqual(
+      characterCounts,
+      ["p": 1, "r": 2, "o": 1, "g": 2, "a": 1, "m": 2, "i": 1, "n": 1],
+      "Should return the correct character occurrences"
+    )
+  }
 }
 
 // MARK: - Localizable

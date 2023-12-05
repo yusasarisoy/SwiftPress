@@ -411,6 +411,30 @@ final class StringTests: XCTestCase {
       "Should return the correct character occurrences"
     )
   }
+
+  // MARK: - toBase64()
+
+  func test_whenConvertGivenStringToBase64_thenReturnsBase64EncodedString() {
+    // Given
+    let originalString = "Hello, World!"
+
+    // When
+    let base64String = originalString.toBase64()
+
+    // Then
+    XCTAssertEqual(base64String, "SGVsbG8sIFdvcmxkIQ==", "Should return the correct base64-encoded string")
+  }
+
+  func test_whenConvertGivenEmptyStringToBase64_thenReturnsEmptyString() {
+    // Given
+    let emptyString: String = .empty
+
+    // When
+    let base64String = emptyString.toBase64()
+
+    // Then
+    XCTAssertEqual(base64String, .empty, "Should return an empty string for an empty input")
+  }
 }
 
 // MARK: - Localizable

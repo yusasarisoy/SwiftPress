@@ -230,6 +230,26 @@ public extension String {
 
     return occurrences
   }
+
+  /// Converts the string to a base64-encoded string.
+  ///
+  /// - Returns: A base64-encoded string representation of the original string.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let originalString = "Hello, World!"
+  /// let base64String = originalString.toBase64()
+  /// print(base64String) // Outputs: "SGVsbG8sIFdvcmxkIQ=="
+  /// ```
+  ///
+  func toBase64() -> String {
+    guard let data = self.data(using: .utf8) else {
+      return .empty
+    }
+
+    return data.base64EncodedString()
+  }
 }
 
 // MARK: - RawRepresentable

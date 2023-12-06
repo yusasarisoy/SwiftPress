@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 public extension NSAttributedString {
   /// Initializes an attributed string from an HTML string.
@@ -34,5 +34,26 @@ public extension NSAttributedString {
     } catch {
       return nil
     }
+  }
+
+  /// Creates an attributed string with a specific font.
+  ///
+  /// - Parameters:
+  ///   - font: The font to apply to the attributed string.
+  /// - Returns: An attributed string with the specified font.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let originalString = "Hello, World!"
+  /// let customFont: UIFont = .boldSystemFont(ofSize: 18)
+  /// let attributedString = NSAttributedString(string: originalString).withFont(customFont)
+  /// ```
+  ///
+  func withFont(_ font: UIFont) -> NSAttributedString {
+    let mutableAttributedString = NSMutableAttributedString(attributedString: self)
+    let range = NSRange(location: 0, length: mutableAttributedString.length)
+    mutableAttributedString.addAttribute(.font, value: font, range: range)
+    return NSAttributedString(attributedString: mutableAttributedString)
   }
 }

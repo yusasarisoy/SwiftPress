@@ -33,4 +33,21 @@ final class NSAttributedStringTests: XCTestCase {
       XCTAssertTrue(attributedString.string.contains("italic"))
     }
   }
+
+  // MARK: - withFont(_:)
+
+  func test_whenCreateNSAttributedStringFromGivenStringAndFont_thenReturnsAttributedStringWithFont() {
+    // Given
+    let originalString = "Hello, World!"
+    let customFont = UIFont.boldSystemFont(ofSize: 18)
+    let attributedString = NSAttributedString(string: originalString)
+
+    // When
+    let updatedAttributedString = attributedString.withFont(customFont)
+
+    // Then
+    XCTAssertNotNil(updatedAttributedString, "Should return an attributed string")
+    let attributes = updatedAttributedString.attributes(at: 0, effectiveRange: nil)
+    XCTAssertEqual(attributes[.font] as? UIFont, customFont, "Should have the specified font")
+  }
 }

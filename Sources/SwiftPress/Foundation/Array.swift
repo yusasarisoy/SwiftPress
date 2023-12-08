@@ -78,6 +78,38 @@ public extension Array {
       Array(self[$0..<Swift.min($0 + chunkSize, count)])
     }
   }
+
+  /// Extracts a subarray from the original array.
+  ///
+  /// - Parameters:
+  ///   - from: The starting index of the subarray.
+  ///   - to: The ending index of the subarray.
+  ///
+  /// - Returns: A subarray of the original array, containing the elements from `from` to `to` (inclusive).
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let numbers = [1, 2, 3, 4, 5]
+  /// let slicedNumbers = numbers.slice(from: 1, to: 3)
+  /// print(slicedNumbers) // Output: [2, 3]
+  /// ```
+  ///
+  /// - Precondition:
+  ///   - `from` must be within the bounds of the array.
+  ///   - `to` must be greater than or equal to `from`.
+  ///   - If `to` exceeds the length of the array, the subarray will be truncated to the end of the array.
+  ///   - If `from` is greater than or equal to `to`, an empty subarray will be returned.
+  func slice(
+    from: Int,
+    to: Int
+  ) -> Array<Element>? {
+    guard startIndex..<endIndex ~= from && from <= to && to <= endIndex else {
+      return nil
+    }
+
+    return Array(self[from ..< to])
+  }
 }
 
 // MARK: - Numeric

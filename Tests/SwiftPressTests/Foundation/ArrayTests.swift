@@ -283,4 +283,50 @@ final class ArrayTests: XCTestCase {
     // Then
     XCTAssertEqual(mostFrequent, 42, "The array has only one element, so it is the most frequent.")
   }
+
+  // MARK: - slice(from:to:)
+
+  func test_WhenSliceGivenEmptyArray_thenSlicingReturnsEmptyArray() {
+    // Given
+    let emptyArray = [Int]()
+
+    // When
+    let slicedArray = emptyArray.slice(from: 0, to: 1)
+
+    // Then
+    XCTAssertNil(slicedArray)
+  }
+  
+  func test_WhenSliceGivenArrayWithSingleElement_thenSlicingReturnsSingleElementArray() {
+    // Given
+    let array = [1, 2, 3]
+
+    // When
+    let slicedArray = array.slice(from: 0, to: 1)
+
+    // Then
+    XCTAssertEqual(slicedArray, [1])
+  }
+  
+  func test_WhenSliceGivenArrayWithMultipleElements_thenSlicingMultipleElementsReturnsDesiredSlice() {
+    // Given
+    let array = [1, 2, 3]
+
+    // When
+    let slicedArray = array.slice(from: 1, to: 2)
+
+    // Then
+    XCTAssertEqual(slicedArray, [2])
+  }
+  
+  func test_WhenSliceGivenArrayWithSliceOutOfRange_thenSlicingReturnsEmptyArray() {
+    // Given
+    let array = [1, 2, 3]
+
+    // When
+    let slicedArray = array.slice(from: 2, to: 4)
+
+    // Then
+    XCTAssertNil(slicedArray)
+  }
 }

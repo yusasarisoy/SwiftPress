@@ -2,6 +2,21 @@ import XCTest
 
 final class DataTests: XCTestCase {
 
+  // MARK: - User
+
+  private struct User: Decodable {
+    let name: String
+    let age: Int
+  }
+
+  // MARK: - Post
+
+  private struct Post: Decodable {
+    let id: Int
+    let title: String
+    let body: String
+  }
+
   // MARK: - Test Setup
 
   override func setUp() {
@@ -14,14 +29,14 @@ final class DataTests: XCTestCase {
 
   // MARK: - Tests
 
-  // MARK: - toJSON()
+  // MARK: - decodeJSON()
 
   func test_whenDecodingGivenValidUserJSON_thenUserIsDecoded() {
     // Given
     let userJSON = #"{"name": "John Doe", "age": 30}"#.data(using: .utf8)!
 
     // When
-    let user = try? Data(userJSON).toJSON(User.self)
+    let user: User? = userJSON.decodeJSON()
 
     // Then
     XCTAssertNotNil(user)
@@ -48,7 +63,7 @@ final class DataTests: XCTestCase {
       .data(using: .utf8)!
 
     // When
-    let posts = try? Data(postJSON).toJSON([Post].self)
+    let posts: [Post]? = postJSON.decodeJSON()
 
     // Then
     XCTAssertNotNil(posts)
@@ -60,24 +75,9 @@ final class DataTests: XCTestCase {
     let invalidJSON = #"{"age": 30}"#.data(using: .utf8)!
 
     // When
-    let user = try? Data(invalidJSON).toJSON(User.self)
+    let user: User? = invalidJSON.decodeJSON()
 
     // Then
     XCTAssertNil(user)
   }
-}
-
-// MARK: - User
-
-private struct User: Decodable {
-  let name: String
-  let age: Int
-}
-
-// MARK: - Post
-
-private struct Post: Decodable {
-  let id: Int
-  let title: String
-  let body: String
 }

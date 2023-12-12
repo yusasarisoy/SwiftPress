@@ -250,6 +250,26 @@ public extension String {
 
     return data.base64EncodedString()
   }
+
+  /// An extension for the String class that provides a convenient method for trimming leading and trailing whitespaces and newlines.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let exampleString = "   Hello, World!   "
+  /// let trimmedString = exampleString.trimWhitespace()
+  /// print(trimmedString) // Output: "Hello, World!"
+  /// ```
+  ///
+  /// - Important: This extension uses the `trimmingCharacters(in:)` method of the `String` class to remove leading and trailing whitespaces and newlines. 
+  /// It does not modify the original string; instead, it returns a new string with the whitespace trimmed.
+  ///
+  /// - Returns: A new string with leading and trailing whitespaces and newlines removed.
+  /// - Complexity: O(n), where n is the length of the string.
+  /// 
+  func trimWhitespace() -> String {
+    trimmingCharacters(in: .whitespacesAndNewlines)
+  }
 }
 
 // MARK: - RawRepresentable

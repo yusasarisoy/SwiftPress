@@ -435,6 +435,52 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertEqual(base64String, .empty, "Should return an empty string for an empty input")
   }
+
+  // MARK: - trimWhitespace()
+
+  func test_whenTrimWhitespaceTheStringThatContainsWhitespace_shouldReturnTrimmedString() {
+    // Given
+    let stringWithWhitespace = "   Hello, World!   "
+
+    // When
+    let trimmedString = stringWithWhitespace.trimWhitespace()
+
+    // Then
+    XCTAssertEqual(trimmedString, "Hello, World!")
+  }
+
+  func test_whenTrimWhitespaceTheStringThatIsEmpty_shouldReturnEmptyString() {
+    // Given
+    let emptyString: String = .empty
+
+    // When
+    let trimmedString = emptyString.trimWhitespace()
+
+    // Then
+    XCTAssertEqual(trimmedString, .empty)
+  }
+
+  func test_whenTrimWhitespaceTheStringThatContainsOnlyWhitespace_shouldReturnEmptyString() {
+    // Given
+    let stringWithOnlyWhitespace = "    \t\n"
+
+    // When
+    let trimmedString = stringWithOnlyWhitespace.trimWhitespace()
+
+    // Then
+    XCTAssertEqual(trimmedString, .empty)
+  }
+
+  func test_whenTrimWhitespaceTheStringThatContainsNoWhitespace_shouldReturnOriginalString() {
+    // Given
+    let stringWithNoWhitespace = "Hello,World!"
+
+    // When
+    let trimmedString = stringWithNoWhitespace.trimWhitespace()
+
+    // Then
+    XCTAssertEqual(trimmedString, "Hello,World!")
+  }
 }
 
 // MARK: - Localizable

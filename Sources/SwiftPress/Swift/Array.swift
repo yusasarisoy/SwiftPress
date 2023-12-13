@@ -110,6 +110,33 @@ public extension Array {
 
     return Array(self[from ..< to])
   }
+
+  /// Groups elements of the array based on a provided condition.
+  ///
+  /// - Parameter condition: A closure that defines the grouping condition.
+  /// - Returns: A dictionary where keys are the grouping condition results, and values are arrays of elements.
+  ///
+  /// Example:
+  ///
+  /// ```swift
+  /// let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  /// let groupedByEvenOdd = numbers.groupBy { $0 % 2 == 0 ? "Even" : "Odd" }
+  /// print(groupedByEvenOdd)
+  /// // Output: ["Even": [2, 4, 6, 8, 10], "Odd": [1, 3, 5, 7, 9]]
+  /// ```
+  ///
+  /// - Complexity: O(n), where n is the number of elements in the array.
+  ///
+  func groupBy<T: Hashable>(condition: (Element) -> T) -> [T: [Element]] {
+    var groupedDictionary = [T: [Element]]()
+    
+    for element in self {
+      let key = condition(element)
+      groupedDictionary[key, default: []].append(element)
+    }
+
+    return groupedDictionary
+  }
 }
 
 // MARK: - Numeric

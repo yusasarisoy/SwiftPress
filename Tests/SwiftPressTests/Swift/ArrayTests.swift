@@ -329,4 +329,29 @@ final class ArrayTests: XCTestCase {
     // Then
     XCTAssertNil(slicedArray)
   }
+
+  // MARK: - groupBy(condition:)
+
+  func test_whenGroupByWithArray_shouldArrayBeFilled() {
+    // Given
+    let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    // When
+    let groupedByEvenOdd = numbers.groupBy { $0 % 2 == 0 ? "Even" : "Odd" }
+
+    // Then
+    XCTAssertEqual(groupedByEvenOdd["Even"], [2, 4, 6, 8, 10])
+    XCTAssertEqual(groupedByEvenOdd["Odd"], [1, 3, 5, 7, 9])
+  }
+
+  func test_whenGroupByWithEmptyArray_shouldArrayBeEmpty() {
+    // Given
+    let emptyArray: [Int] = []
+
+    // When
+    let grouped = emptyArray.groupBy { $0 % 2 == 0 ? "Even" : "Odd" }
+
+    // Then
+    XCTAssertTrue(grouped.isEmpty)
+  }
 }

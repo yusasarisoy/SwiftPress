@@ -137,6 +137,31 @@ public extension Array {
 
     return groupedDictionary
   }
+
+  /// Rotates the elements of the array to the left by a specified number of positions.
+  ///
+  /// - Parameter positions: The number of positions to rotate the elements.
+  /// - Returns: A new array with elements rotated to the left.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let numbers = [1, 2, 3, 4, 5]
+  /// let rotatedNumbers = numbers.rotateLeft(by: 2)
+  /// print(rotatedNumbers)
+  /// // Output: [3, 4, 5, 1, 2]
+  /// ```
+  ///
+  func rotateLeft(by positions: Int) -> [Element] {
+    guard !isEmpty else { return [] }
+
+    let effectivePositions = positions % count
+    var splitIndex = index(startIndex, offsetBy: effectivePositions)
+    if splitIndex < 0 {
+      splitIndex += self.count
+    }
+    return Array(self[splitIndex...] + self[..<splitIndex])
+  }
 }
 
 // MARK: - Numeric

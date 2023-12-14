@@ -354,4 +354,61 @@ final class ArrayTests: XCTestCase {
     // Then
     XCTAssertTrue(grouped.isEmpty)
   }
+
+  // MARK: - rotateLeft(by:)
+
+  func test_whenRotateLeftAnArray_shouldRotateArrayToLeftBySpecifiedPositions() {
+    // Given
+    let numbers = [1, 2, 3, 4, 5]
+
+    // When
+    let rotatedByTwo = numbers.rotateLeft(by: 2)
+
+    // Then
+    XCTAssertEqual(rotatedByTwo, [3, 4, 5, 1, 2])
+  }
+
+  func test_whenRotateLeftAnEmptyArray_shouldReturnEmptyArray() {
+    // Given
+    let emptyArray: [Int] = []
+
+    // When
+    let rotated = emptyArray.rotateLeft(by: 3)
+
+    // Then
+    XCTAssertEqual(rotated, [])
+  }
+
+  func test_whenRotateLeftAnArrayWithZeroPositions_shouldReturnOriginalArray() {
+    // Given
+    let numbers = [1, 2, 3, 4, 5]
+
+    // When
+    let rotatedByZero =  numbers.rotateLeft(by: 0)
+
+    // Then
+    XCTAssertEqual(rotatedByZero, numbers)
+  }
+
+  func test_whenRotateLeftAnArrayWithNegativePositions_shouldRotateArrayToLeftBySpecifiedNegativePositions() {
+    // Given
+    let numbers = [1, 2, 3, 4, 5]
+
+    // When
+    let rotatedByNegative = numbers.rotateLeft(by: -2)
+
+    // Then
+    XCTAssertEqual(rotatedByNegative, [4, 5, 1, 2, 3])
+  }
+
+  func test_whenRotateLeftAnArrayWithLargeNumberOfPositions_shouldReturnOriginalArray() {
+    // Given
+    let numbers = [1, 2, 3, 4, 5]
+
+    // When
+    let rotatedByLargeNumber = numbers.rotateLeft(by: 100)
+
+    // Then
+    XCTAssertEqual(rotatedByLargeNumber, [1, 2, 3, 4, 5])
+  }
 }

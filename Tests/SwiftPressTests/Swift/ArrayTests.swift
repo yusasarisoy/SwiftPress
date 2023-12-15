@@ -411,4 +411,46 @@ final class ArrayTests: XCTestCase {
     // Then
     XCTAssertEqual(rotatedByLargeNumber, [1, 2, 3, 4, 5])
   }
+
+  // MARK: - intersection(with:)
+
+  func test_whenIntersectionWithCommonElements_shouldReturnIntersection() {
+    // Given
+    let array1 = [1, 2, 3, 4, 5]
+    let array2 = [3, 4, 5, 6, 7]
+
+    // When
+    let intersection = array1.intersection(with: array2)
+
+    // Then
+    XCTAssertTrue(
+      intersection.allSatisfy { element in
+        [3, 4, 5].contains(element)
+      }
+    )
+  }
+
+  func testIntersectionWithNoCommonElements_shouldReturnEmptyArray() {
+    // Given
+    let array1 = [1, 2, 3]
+    let array2 = [4, 5, 6]
+
+    // When
+    let intersection = array1.intersection(with: array2)
+
+    // Then
+    XCTAssertTrue(intersection.isEmpty)
+  }
+
+  func test_whenIntersectionWithEmptyArrays_shouldReturnEmptyArray() {
+    // Given
+    let array1: [Int] = []
+    let array2: [Int] = []
+
+    // When
+    let intersection = array1.intersection(with: array2)
+
+    // Then
+    XCTAssertTrue(intersection.isEmpty)
+  }
 }

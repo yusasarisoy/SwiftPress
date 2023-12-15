@@ -254,4 +254,24 @@ public extension Array where Element: Hashable {
     let counts = reduce(into: [:]) { $0[$1, default: 0] += 1 }
     return counts.max { $0.1 < $1.1 }?.key
   }
+
+  /// Finds the intersection of two arrays.
+  ///
+  /// - Parameter otherArray: The array to find the intersection with.
+  /// - Returns: An array containing the common elements between the two arrays.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let array1 = [1, 2, 3, 4, 5]
+  /// let array2 = [3, 4, 5, 6, 7]
+  /// let intersection = array1.intersection(with: array2)
+  /// print(intersection) // Output: [3, 4, 5]
+  /// ```
+  ///
+  func intersection(with otherArray: [Element]) -> [Element] {
+    let set1 = Set(self)
+    let set2 = Set(otherArray)
+    return Array(set1.intersection(set2))
+  }
 }

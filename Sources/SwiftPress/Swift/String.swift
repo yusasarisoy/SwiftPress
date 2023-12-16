@@ -270,6 +270,34 @@ public extension String {
   func trimWhitespace() -> String {
     trimmingCharacters(in: .whitespacesAndNewlines)
   }
+
+  /// Checks if the string is a valid IPv4 address.
+  ///
+  /// This extension method is used to validate whether a given string represents a valid IPv4 address.
+  ///
+  /// - Returns: `true` if the string is a valid IPv4 address, `false` otherwise.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let ipAddress = "192.168.1.1"
+  ///
+  /// if ipAddress.isValidIPv4Address() {
+  ///   print("Valid IPv4 address.")
+  /// } else {
+  ///   print("Invalid IPv4 address.")
+  /// }
+  /// ```
+  ///
+  /// - Note: The method uses a regular expression pattern to validate the IPv4 address format.
+  ///
+  /// - Returns: A Boolean value indicating whether the string is a valid IPv4 address.
+  ///
+  func isValidIPv4Address() -> Bool {
+    let regex = #"^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$"#
+    let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+    return predicate.evaluate(with: self)
+  }
 }
 
 // MARK: - RawRepresentable

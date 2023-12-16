@@ -481,6 +481,34 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertEqual(trimmedString, "Hello,World!")
   }
+
+  // MARK: - isValidIPv4Address()
+
+  func test_whenCheckWhetherIPv4AddressIsValid_shouldBeValidIPv4Address() {
+    // Given
+    let validIpAddresses = ["192.168.1.1", "10.0.0.1", "127.0.0.1"]
+
+    // When
+    for ipAddress in validIpAddresses {
+      let isValid = ipAddress.isValidIPv4Address()
+
+      // Then
+      XCTAssertTrue(isValid, "IPv4 address \(ipAddress) should be valid.")
+    }
+  }
+
+  func test_whenCheckWhetherIPv4AddressIsValid_shouldBeInvalidIPv4Address() {
+    // Given
+    let invalidIpAddresses = ["192.168.1.", "10.0.001", "0.0.0.b"]
+
+    // When
+    for ipAddress in invalidIpAddresses {
+      let isValid = ipAddress.isValidIPv4Address()
+
+      // Then
+      XCTAssertFalse(isValid, "IPv4 address \(ipAddress) should not be invalid.")
+    }
+  }
 }
 
 // MARK: - Localizable

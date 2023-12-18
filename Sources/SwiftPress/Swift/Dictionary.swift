@@ -19,4 +19,34 @@ public extension Dictionary {
     }
     return result
   }
+
+  /// Merges two dictionaries. Values from the second dictionary overwrite values of the first dictionary for the same key.
+  ///
+  /// - Parameter other: The dictionary to merge into the current dictionary.
+  ///
+  /// This method iterates through each key-value pair in the `other` dictionary
+  /// and updates the current dictionary with the key-value pairs from `other`.
+  /// If a key already exists in the current dictionary, the corresponding value
+  /// is overwritten by the value from the `other` dictionary.
+  ///
+  /// - Note: This operation is performed in-place, modifying the current dictionary.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// var firstDictionary = ["a": 1, "b": 2]
+  /// let secondDictionary = ["b": 3, "c": 4]
+  ///
+  /// // In-place merge
+  /// firstDictionary.merge(secondDictionary)
+  /// print(firstDictionary)  // Prints ["a": 1, "b": 3, "c": 4]
+  /// ```
+  ///
+  /// - Warning: This method modifies the current dictionary in-place.
+  /// 
+  mutating func merge(_ other: [Key: Value]) {
+    for (key, value) in other {
+      self[key] = value
+    }
+  }
 }

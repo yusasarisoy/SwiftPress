@@ -48,4 +48,20 @@ final class DictionaryTests: XCTestCase {
     // Then
     XCTAssertTrue(result.isEmpty, "Should return an empty dictionary for an empty input")
   }
+
+  // MARK: - merge(_:)
+
+  func test_whenMergingInPlaceGivenTwoDictionaries_thenValuesAreOverwritten() {
+    // Given
+    var firstDictionary = ["a": 1, "b": 2]
+    let secondDictionary = ["b": 3, "c": 4]
+
+    // When
+    firstDictionary.merge(secondDictionary)
+
+    // Then
+    XCTAssertEqual(firstDictionary["a"], 1)
+    XCTAssertEqual(firstDictionary["b"], 3)  // Overwritten by the second dictionary
+    XCTAssertEqual(firstDictionary["c"], 4)
+  }
 }

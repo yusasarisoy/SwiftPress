@@ -64,4 +64,40 @@ public extension Int {
     }
     return true
   }
+
+  /// Calculates the factorial of an integer.
+  ///
+  /// - Returns: The factorial of the integer, or `nil` if the integer is negative.
+  ///
+  /// This method uses the `reduce` function on a closed range from 1 to the integer value (inclusive)
+  /// to calculate the factorial. If the integer is negative, the result is `nil` since factorial
+  /// is undefined for negative numbers.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let number = 5
+  /// 
+  /// if let result = number.factorial() {
+  ///   print("The factorial of \(number) is \(result)")
+  /// } else {
+  ///   print("Factorial is undefined for negative numbers")
+  /// }
+  /// ```
+  ///
+  /// - Warning: The calculation may result in an overflow for large input values.
+  ///
+  /// - Returns: The factorial of the integer, or `nil` if the integer is negative.
+  ///
+  func factorial() -> Int? {
+    guard self > -1 else {
+      return nil
+    }
+
+    guard self > .zero else {
+      return 1
+    }
+
+    return (1...self).reduce(1, *)
+  }
 }

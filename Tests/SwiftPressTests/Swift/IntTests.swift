@@ -88,4 +88,35 @@ final class IntTests: XCTestCase {
     XCTAssertFalse(0.isPrime, "The number 0 should not be identified as a prime number.")
     XCTAssertFalse(1.isPrime, "The number 1 should not be identified as a prime number.")
   }
+
+  // MARK: - factorial()
+
+  func test_whenCalculatingFactorialOfGivenNonNegativeInteger_thenValidFactorialIsReturned() {
+    // Given
+    let testCases: [Int: Int] = [
+      0: 1,
+      1: 1,
+      2: 2,
+      3: 6,
+      4: 24,
+      5: 120
+    ]
+
+    // When, Then
+    for (input, expected) in testCases {
+      let result = input.factorial()
+      XCTAssertEqual(result, expected, "Factorial of \(input) should be \(expected), but got \(String(describing: result)).")
+    }
+  }
+
+  func test_whenCalculatingFactorialOfGivenNegativeInteger_thenNilIsReturned() {
+    // Given
+    let negativeInteger = -5
+
+    // When
+    let result = negativeInteger.factorial()
+
+    // Then
+    XCTAssertNil(result, "Factorial should be nil for a negative integer.")
+  }
 }

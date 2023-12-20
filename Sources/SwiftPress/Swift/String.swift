@@ -298,6 +298,38 @@ public extension String {
     let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
     return predicate.evaluate(with: self)
   }
+
+  /// Checks if the string contains a given substring.
+  ///
+  /// This method determines whether the current string contains the specified substring.
+  ///
+  /// - Parameters:
+  ///   - substring: The substring to check for.
+  ///
+  /// - Returns: A boolean value indicating whether the string contains the given substring.
+  ///
+  /// - Complexity: The time complexity of this method is O(n), where n is the length of the string.
+  ///
+  /// - Note: The comparison is case-sensitive. For case-insensitive comparison, consider using `range(of:options:)` with `.caseInsensitive`.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let originalString = "Hello, World!"
+  /// let substringToCheck = "World"
+  ///
+  /// if originalString.contains(substring: substringToCheck) {
+  ///   print("String contains the substring.")
+  /// } else {
+  ///   print("String does not contain the substring.")
+  /// }
+  /// ```
+  ///
+  /// This will print whether the original string contains the specified substring or not.
+  ///
+  func contains(substring: String) -> Bool {
+    range(of: substring) != nil
+  }
 }
 
 // MARK: - RawRepresentable

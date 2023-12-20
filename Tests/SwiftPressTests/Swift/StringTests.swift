@@ -509,6 +509,32 @@ final class StringTests: XCTestCase {
       XCTAssertFalse(isValid, "IPv4 address \(ipAddress) should not be invalid.")
     }
   }
+
+  // MARK: - contains(substring:)
+
+  func test_whenCheckingGivenStringContainsSubstring_thenShouldReturnTrue() {
+    // Given
+    let originalString = "Hello, World!"
+
+    // When
+    let containsSubstring = originalString.contains(substring: "World")
+    let doesNotContainSubstring = originalString.contains(substring: "Swift")
+
+    // Then
+    XCTAssertTrue(containsSubstring, "String should contain the substring.")
+    XCTAssertFalse(doesNotContainSubstring, "String should not contain the substring.")
+  }
+
+  func test_whenCheckingGivenStringContainsCaseInsensitiveSubstring_thenShouldReturnTrue() {
+    // Given
+    let originalString = "Hello, World!"
+
+    // When
+    let containsSubstring = originalString.range(of: "WORLD", options: .caseInsensitive) != nil
+
+    // Then
+    XCTAssertTrue(containsSubstring, "String should contain the case-insensitive substring.")
+  }
 }
 
 // MARK: - Localizable

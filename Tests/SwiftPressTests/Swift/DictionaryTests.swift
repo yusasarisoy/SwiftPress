@@ -64,4 +64,39 @@ final class DictionaryTests: XCTestCase {
     XCTAssertEqual(firstDictionary["b"], 3)  // Overwritten by the second dictionary
     XCTAssertEqual(firstDictionary["c"], 4)
   }
+
+  // MARK: - value(for:default:)
+
+  func test_whenRetrievingValueGivenExistingKey_thenReturnCorrectScore() {
+    // Given
+    let scores = ["Alice": 90, "Bob": 85, "Charlie": 95]
+
+    // When
+    let aliceScore = scores.value(for: "Alice", default: 0)
+
+    // Then
+    XCTAssertEqual(aliceScore, 90, "Expected to get Alice's score of 90")
+  }
+
+  func test_whenRetrievingValueGivenNonExistingKey_thenReturnDefaultValue() {
+    // Given
+    let scores = ["Alice": 90, "Bob": 85, "Charlie": 95]
+
+    // When
+    let davidScore = scores.value(for: "David", default: 0)
+
+    // Then
+    XCTAssertEqual(davidScore, 0, "Expected to get the default score of 0 for David")
+  }
+
+  func test_whenRetrievingValueGivenExistingKeyWithoutUsingDefaultValue_thenReturnCorrectScore() {
+    // Given
+    let scores = ["Alice": 90, "Bob": 85, "Charlie": 95]
+
+    // When
+    let charlieScore = scores.value(for: "Charlie", default: 0)
+
+    // Then
+    XCTAssertEqual(charlieScore, 95, "Expected to get Charlie's score of 95 without using the default value")
+  }
 }

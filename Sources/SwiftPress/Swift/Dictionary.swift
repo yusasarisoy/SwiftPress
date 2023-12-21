@@ -49,4 +49,34 @@ public extension Dictionary {
       self[key] = value
     }
   }
+
+  /// Safely retrieve a value for the given key, providing a default value if the key is not present.
+  ///
+  /// - Parameters:
+  ///   - key: The key for which the value is to be retrieved.
+  ///   - defaultValue: The default value to be returned if the key is not present.
+  ///
+  /// - Returns: The value associated with the specified key, or the default value if the key is not found.
+  ///
+  /// - Complexity:
+  ///   Retrieving a value from a dictionary has an average complexity of O(1), making this method efficient.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let scores = ["Alice": 90, "Bob": 85, "Charlie": 95]
+  ///
+  /// let aliceScore = scores.value(for: "Alice", default: 0)
+  /// let davidScore = scores.value(for: "David", default: 0)
+  ///
+  /// print("Alice's Score: \(aliceScore).")
+  /// print("David's Score: \(davidScore).")
+  /// ```
+  ///
+  func value(
+    for key: Key,
+    default defaultValue: Value
+  ) -> Value {
+    self[key].or(defaultValue)
+  }
 }

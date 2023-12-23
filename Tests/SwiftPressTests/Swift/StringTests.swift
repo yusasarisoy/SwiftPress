@@ -535,6 +535,19 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertTrue(containsSubstring, "String should contain the case-insensitive substring.")
   }
+
+  // MARK: - snakeCaseToCamelCase()
+
+  func test_whenConvertingSnakeCaseToCamelCase_thenShouldBeConvertedSuccessfully() {
+    // Given
+    let snakeCaseString = "hello_world_swift"
+
+    // When
+    let camelCaseString = snakeCaseString.snakeCaseToCamelCase()
+
+    // Then
+    XCTAssertEqual(camelCaseString, "HelloWorldSwift", "The snake_case string should be converted to CamelCase.")
+  }
 }
 
 // MARK: - Localizable

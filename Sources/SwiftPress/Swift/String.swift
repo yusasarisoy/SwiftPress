@@ -330,6 +330,26 @@ public extension String {
   func contains(substring: String) -> Bool {
     range(of: substring) != nil
   }
+
+  /// Converts a snake_case string to CamelCase.
+  ///
+  /// This method takes a string in snake_case format and transforms it into CamelCase.
+  ///
+  /// - Returns: A new string in CamelCase.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let snakeCaseString = "hello_world_swift"
+  /// let camelCaseString = snakeCaseString.snakeCaseToCamelCase()
+  /// print(camelCaseString) // Output: "HelloWorldSwift"
+  /// ```
+  ///
+  func snakeCaseToCamelCase() -> String {
+    let components = self.components(separatedBy: "_")
+    let camelCaseComponents = components.map { $0.capitalized }
+    return camelCaseComponents.joined()
+  }
 }
 
 // MARK: - RawRepresentable

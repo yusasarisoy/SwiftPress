@@ -28,6 +28,36 @@ public extension Date {
     return dateFormatter.string(from: self)
   }
 
+  /// Formats the date into a custom string representation.
+  ///
+  /// This method allows formatting a `Date` object into a string using a specified date format.
+  ///
+  /// - Parameters:
+  ///   - format: The desired date format.
+  ///   - timeZone: The time zone to use for the formatted string. Default is the current time zone.
+  ///   - locale: The locale to use for the formatted string. Default is the current locale.
+  /// - Returns: A string representation of the date in the specified format.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let currentDate = Date()
+  /// let formattedDate = currentDate.formatDate(format: "yyyy-MM-dd HH:mm:ss")
+  /// print(formattedDate) // Example output: "2023-01-31 15:45:00"
+  /// ```
+  ///
+  func formatDate(
+    format: String,
+    timeZone: TimeZone? = nil,
+    locale: Locale? = nil
+  ) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = format
+    dateFormatter.timeZone = timeZone ?? TimeZone.current
+    dateFormatter.locale = locale ?? Locale.current
+    return dateFormatter.string(from: self)
+  }
+
   /// Calculates the difference in days between two dates.
   ///
   /// - Parameters:

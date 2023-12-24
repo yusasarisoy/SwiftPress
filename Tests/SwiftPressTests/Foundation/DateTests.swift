@@ -41,6 +41,22 @@ final class DateTests: XCTestCase {
     XCTAssertEqual(formattedDate, "Thursday, October 12, 2023")
   }
 
+  // MARK: - formatDate(format:timeZone:locale:)
+
+  func test_whenFormatingDateWithUTCTimeZone_thenShouldBeFormattedCorrectly() {
+    // Given
+    let testDate = Date(timeIntervalSince1970: 1643642700) // January 31, 2022, 3:45:00 PM UTC
+
+    // When
+    let formattedDate = testDate.formatDate(
+      format: "yyyy-MM-dd HH:mm:ss", 
+      timeZone: TimeZone(abbreviation: "UTC")
+    )
+
+    // Then
+    XCTAssertEqual(formattedDate, "2022-01-31 3:25:00 PM", "The date should be formatted correctly.")
+  }
+
   // MARK: - daysDifference(from:)
 
   func test_whenFindDaysDifference_expectTheDifferenceIsTrue() {

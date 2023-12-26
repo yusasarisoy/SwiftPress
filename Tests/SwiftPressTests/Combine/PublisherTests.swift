@@ -22,6 +22,8 @@ final class PublisherTests: XCTestCase {
 
   // MARK: - Tests
 
+  // MARK: - receiveOnMain()
+
   func test_whenReceiveValueOnMain_expectGettingTheValueOnMainThread() {
     // Given
     let expectation = XCTestExpectation(description: "Receive the value on main queue.")
@@ -43,5 +45,30 @@ final class PublisherTests: XCTestCase {
     }
 
     wait(for: [expectation], timeout: 1.0)
+  }
+
+  // MARK: - filterNotNil()
+
+  func test_whenFilteringNotNilGivenOptionalValues_thenReceiveNonNilValues() {
+    // Given
+    let optionalNumbers: [Int?] = [1, nil, 3, nil, 5]
+    let publisher = optionalNumbers.publisher
+    let nonNilPublisher = publisher.filterNotNil()
+
+    // When
+    let expectation = XCTestExpectation(description: "Receive values from the publisher")
+    var receivedValues: [Int] = []
+
+    let cancellable = nonNilPublisher.sink { value in
+      receivedValues.append(value)
+      if receivedValues.count == 3 {
+        expectation.fulfill()
+      }
+    }
+
+    // Then
+    wait(for: [expectation], timeout: 1.0)
+    XCTAssertEqual(receivedValues, [1, 3, 5])
+    XCTAssertNotNil(cancellable)
   }
 }

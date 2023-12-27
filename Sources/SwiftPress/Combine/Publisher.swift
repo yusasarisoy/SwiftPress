@@ -33,4 +33,47 @@ public extension Publisher {
   func filterNotNil<Element>() -> Publishers.CompactMap<Self, Element> where Output == Element? {
     compactMap { $0 }
   }
+
+  /// Logs each received value to the console.
+  ///
+  /// This extension is designed to be used with Combine publishers and is particularly
+  /// useful for debugging and understanding the flow of values in a Combine sequence.
+  ///
+  /// - Returns: A publisher that emits the same output and failure types as the original publisher.
+  ///
+  /// - Note: The `@discardableResult` attribute is used to suppress the warning
+  ///         "Result of call to 'print(_:to:)' is unused" when calling the `print` function.
+  ///
+  /// - Warning: Avoid using this extension in production code where logging might be
+  ///            inappropriate or where performance considerations are critical.
+  ///
+  /// - SeeAlso: `handleEvents(receiveOutput:)`, `eraseToAnyPublisher()`
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// // Create a Combine publisher that emits two integers.
+  /// let integerPublisher = Just(42)
+  ///   .delay(for: .seconds(1), scheduler: DispatchQueue.main)
+  ///
+  /// // Subscribe to the publisher, apply logValues extension, and sink the values.
+  /// let cancellable = integerPublisher
+  ///   .logValues()
+  ///   .sink { receivedValue in
+  ///     print("Processed value: \(receivedValue).")
+  ///   }
+  ///
+  /// // Cancel the subscription after a delay
+  /// DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+  ///   cancellable.cancel()
+  /// }
+  /// ```
+  ///
+  @discardableResult
+  func logValues() -> AnyPublisher<Output, Failure> {
+    handleEvents(receiveOutput: { value in
+      _ = print("Received value: \(value).")
+    })
+    .eraseToAnyPublisher()
+  }
 }

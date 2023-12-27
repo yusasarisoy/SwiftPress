@@ -71,4 +71,41 @@ final class PublisherTests: XCTestCase {
     XCTAssertEqual(receivedValues, [1, 3, 5])
     XCTAssertNotNil(cancellable)
   }
+
+  // MARK: - logValues()
+
+  func test_whenLogValuesExtensionGivenPublisherWithValues_thenValuesAreLogged() {
+    // Given
+    let expectation = XCTestExpectation(description: "Values are logged")
+    var loggedValues = [Int]()
+
+    // Create a Combine publisher that emits three integers
+    let integerPublisher = PassthroughSubject<Int, Never>()
+
+    // When
+    let cancellable = integerPublisher
+      .logValues()
+      .sink { receivedValue in
+        loggedValues.append(receivedValue)
+      }
+
+    // Emit values to the publisher
+    integerPublisher.send(1)
+    integerPublisher.send(2)
+    integerPublisher.send(3)
+
+    // Delay the fulfillment of the expectation to ensure all values are processed
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+      expectation.fulfill()
+    }
+
+    // Then
+    wait(for: [expectation], timeout: 2)
+
+    // Verify that values are logged correctly
+    XCTAssertEqual(loggedValues, [1, 2, 3])
+
+    // Cancel the subscription
+    cancellable.cancel()
+  }
 }

@@ -62,4 +62,52 @@ final class DispatchQueueTests: XCTestCase {
     // Wait for the expectation to be fulfilled
     wait(for: [expectation], timeout: 5)
   }
+
+  // MARK: - scheduleRepeatedly(interval:closure:times:)
+
+  func test_whenClosureExecutedExpectedNumberOfTimesForGivenScheduledRepeatedly_thenTimerIsCancelled() {
+    // Given
+    let expectation = XCTestExpectation(description: "Scheduled repeatedly")
+    var counter = 0
+    let interval: TimeInterval = 0.1
+    let expectedExecutions = 3
+
+    // When
+    let timer = DispatchQueue.scheduleRepeatedly(interval: interval) {
+      counter += 1
+      if counter == expectedExecutions {
+        expectation.fulfill()
+      }
+    }
+
+    wait(for: [expectation], timeout: TimeInterval(expectedExecutions) * interval + 1)
+
+    timer.cancel()
+
+    // Then
+    XCTAssertEqual(counter, expectedExecutions, "The closure should be executed the expected number of times.")
+  }
+
+  func test_whenClosureExecutedExpectedNumberOfTimesForGivenScheduledRepeatedlyIndefinitely_thenTimerIsCancelled() {
+    // Given
+    let expectation = XCTestExpectation(description: "Scheduled repeatedly indefinitely")
+    var counter = 0
+    let interval: TimeInterval = 0.1
+    let expectedExecutions = 3
+
+    // When
+    let timer = DispatchQueue.scheduleRepeatedly(interval: interval) {
+      counter += 1
+      if counter == expectedExecutions {
+        expectation.fulfill()
+      }
+    }
+
+    wait(for: [expectation], timeout: TimeInterval(expectedExecutions) * interval + 1)
+
+    timer.cancel()
+
+    // Then
+    XCTAssertEqual(counter, expectedExecutions, "The closure should be executed the expected number of times.")
+  }
 }

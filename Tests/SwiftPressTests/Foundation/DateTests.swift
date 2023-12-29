@@ -103,4 +103,30 @@ final class DateTests: XCTestCase {
     // When, Then
     XCTAssertFalse(futureDate.isInPast, "The future date should not be identified as in the past.")
   }
+
+  // MARK: - dayOfTheWeek()
+
+  func test_whenGettingDayOfTheWeekForGivenSpecificDate_thenReturnCorrectDay() {
+    // Given
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+
+    guard
+      let mondayDate = dateFormatter.date(from: "2023-01-02"),
+      let wednesdayDate = dateFormatter.date(from: "2023-01-04"),
+      let sundayDate = dateFormatter.date(from: "2023-01-08") else {
+      XCTFail()
+      return
+    }
+
+    // When
+    let mondayDayOfWeek = mondayDate.dayOfTheWeek()
+    let wednesdayDayOfWeek = wednesdayDate.dayOfTheWeek()
+    let sundayDayOfWeek = sundayDate.dayOfTheWeek()
+
+    // Then
+    XCTAssertEqual(mondayDayOfWeek, "Monday")
+    XCTAssertEqual(wednesdayDayOfWeek, "Wednesday")
+    XCTAssertEqual(sundayDayOfWeek, "Sunday")
+  }
 }

@@ -114,4 +114,24 @@ public extension Date {
   var isInPast: Bool {
     self <= Date()
   }
+
+  /// Gets the day of the week as a string.
+  ///
+  /// - Returns: A string representing the day of the week.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let currentDate = Date()
+  /// let dayOfWeek = currentDate.dayOfTheWeek()
+  ///
+  /// print("Current date: \(currentDate).")
+  /// print("Day of the week: \(dayOfWeek).")
+  /// ```
+  ///
+  func dayOfTheWeek() -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "EEEE"
+    return dateFormatter.string(from: self)
+  }
 }

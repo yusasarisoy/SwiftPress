@@ -80,4 +80,23 @@ final class DataTests: XCTestCase {
     // Then
     XCTAssertNil(user)
   }
+
+  // MARK: - toHexString
+
+  func test_whenConvertingDataIntoHexString_thenDataConvertedIntoHexStringSuccessfully() {
+    // Given
+    let testData1 = "Hello, World!".data(using: .utf8)
+    let expectedHex1 = "48656c6c6f2c20576f726c6421"
+
+    let testData2 = Data()
+    let expectedHex2: String = .empty
+
+    // When
+    let resultHex1 = testData1?.toHexString()
+    let resultHex2 = testData2.toHexString()
+
+    // Then
+    XCTAssertEqual(resultHex1, expectedHex1, "Hexadecimal conversion for 'Hello, World!' failed.")
+    XCTAssertEqual(resultHex2, expectedHex2, "Hexadecimal conversion for an empty data failed.")
+  }
 }

@@ -28,4 +28,22 @@ public extension Data {
       return nil
     }
   }
+
+  /// Converts the contents of the data to a hexadecimal string representation.
+  ///
+  /// - Returns: A hexadecimal string representation of the data.
+  ///
+  /// - Note: Each byte in the data is represented by two hexadecimal characters.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let data = "Hello, World!".data(using: .utf8)
+  /// let hexString = data?.toHexString()
+  /// print(hexString) // Output: 48656c6c6f2c20576f726c6421
+  /// ```
+  ///
+  func toHexString() -> String {
+    map { String(format: "%02hhx", $0) }.joined()
+  }
 }

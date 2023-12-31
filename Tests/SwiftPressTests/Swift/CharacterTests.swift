@@ -29,5 +29,28 @@ final class CharacterTests: XCTestCase {
     XCTAssertTrue(isVowel1, "Should return true for a vowel character")
     XCTAssertFalse(isVowel2, "Should return false for a non-vowel character")
   }
-}
 
+  // MARK: - isEmoji
+
+  func test_whenCheckWhetherEmojiCharacterIsEmoji_thenItShouldBeTrue() {
+    // Given
+    let emojiCharacter: Character = "😀"
+
+    // When
+    let isCharacterEmoji = emojiCharacter.isEmoji
+
+    // Then
+    XCTAssertTrue(isCharacterEmoji, "Emoji character should be recognized as an emoji.")
+  }
+
+  func test_whenCheckWhetherNonEmojiCharacterIsEmoji_thenItShouldBeFalse() {
+    // Given
+    let nonEmojiCharacter: Character = "A"
+
+    // When
+    let isCharacterEmoji = nonEmojiCharacter.isEmoji
+
+    // Then
+    XCTAssertFalse(isCharacterEmoji, "Non-emoji character should not be recognized as an emoji.")
+  }
+}

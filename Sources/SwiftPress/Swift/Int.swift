@@ -100,4 +100,50 @@ public extension Int {
 
     return (1...self).reduce(1, *)
   }
+
+  /// Converts the integer to a Roman numeral string.
+  ///
+  /// This method takes an integer value and returns its Roman numeral representation. The Roman numeral system uses combinations of letters from the Latin alphabet to represent numbers. The provided implementation supports converting integers up to 3999.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let number = 2023
+  /// let romanNumeral = number.romanNumeral
+  /// print("Roman Numeral for \(number): \(romanNumeral).")
+  /// ```
+  ///
+  /// - Returns: A string representing the Roman numeral equivalent of the integer.
+  ///
+  var romanNumeral: String {
+    guard self > .zero else { return .empty }
+
+    let romanNumerals: [(value: Int, numeral: String)] = [
+      (1000, "M"), 
+      (900, "CM"),
+      (500, "D"),
+      (400, "CD"),
+      (100, "C"),
+      (90, "XC"),
+      (50, "L"),
+      (40, "XL"),
+      (10, "X"), 
+      (9, "IX"), 
+      (5, "V"),
+      (4, "IV"),
+      (1, "I")
+    ]
+
+    var result: String = .empty
+    var value = self
+
+    romanNumerals.forEach {
+      while value >= $0.value {
+        result += $0.numeral
+        value -= $0.value
+      }
+    }
+
+    return result
+  }
 }

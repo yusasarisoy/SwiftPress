@@ -119,4 +119,39 @@ final class IntTests: XCTestCase {
     // Then
     XCTAssertNil(result, "Factorial should be nil for a negative integer.")
   }
+
+  // MARK: - romanNumeral
+
+  func test_whenConvertPositiveNumberToRomanNumeral_thenItShouldBeConvertedSuccessfully() {
+    // Given
+    let number = 149
+
+    // When
+    let romanNumeral = number.romanNumeral
+
+    // Then
+    XCTAssertEqual(romanNumeral, "CXLIX", "Incorrect Roman numeral for the positive number.")
+  }
+
+  func test_whenConvertZeroRomanNumeral_thenItShouldBeEmpty() {
+    // Given
+    let number: Int = .zero
+
+    // When
+    let romanNumeral = number.romanNumeral
+
+    // Then
+    XCTAssertEqual(romanNumeral, .empty, "Roman numeral for zero should be an empty string.")
+  }
+
+  func test_whenConvertNegativeNumberToRomanNumeral_thenItShouldBeEmpty() {
+    // Given
+    let number = -42
+
+    // When
+    let romanNumeral = number.romanNumeral
+
+    // Then
+    XCTAssertEqual(romanNumeral, .empty, "Roman numeral for a negative number should be an empty string.")
+  }
 }

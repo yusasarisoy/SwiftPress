@@ -548,6 +548,41 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertEqual(camelCaseString, "HelloWorldSwift", "The snake_case string should be converted to CamelCase.")
   }
+
+  // MARK: - isBlank
+
+  func test_whenCheckingWhetherEmptyStringIsBlank_thenReturnsTrue() {
+    // Given
+    let emptyString: String = .empty
+
+    // When
+    let result = emptyString.isBlank
+
+    // Then
+    XCTAssertTrue(result, "Expected an empty string to be blank")
+  }
+
+  func test_whenCheckingWhetherWhitespaceStringIsBlank_thenItReturnsTrue() {
+    // Given
+    let whitespaceString = "    "
+
+    // When
+    let result = whitespaceString.isBlank
+
+    // Then
+    XCTAssertTrue(result, "Expected a whitespace string to be blank")
+  }
+
+  func test_whenCheckingWhetherNonEmptyStringIsBlank_thenReturnsFalse() {
+    // Given
+    let nonEmptyString = "Hello, World!"
+
+    // When
+    let result = nonEmptyString.isBlank
+
+    // Then
+    XCTAssertFalse(result, "Expected a non-empty string to not be blank")
+  }
 }
 
 // MARK: - Localizable

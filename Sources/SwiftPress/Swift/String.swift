@@ -350,6 +350,26 @@ public extension String {
     let camelCaseComponents = components.map { $0.capitalized }
     return camelCaseComponents.joined()
   }
+
+  /// Checks if a string is empty or consists only of whitespaces.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let emptyString = ""
+  /// let whitespaceString = "    "
+  /// let nonEmptyString = "Hello, World!"
+  ///
+  /// print(emptyString.isBlank) // Output: true
+  /// print(whitespaceString.isBlank) // Output: true
+  /// print(nonEmptyString.isBlank) // Output: false
+  /// ```
+  ///
+  /// - Returns: `true` if the string is empty or contains only whitespaces, `false` otherwise.
+  ///
+  var isBlank: Bool {
+    allSatisfy { $0.isWhitespace }
+  }
 }
 
 // MARK: - RawRepresentable

@@ -154,4 +154,51 @@ final class IntTests: XCTestCase {
     // Then
     XCTAssertEqual(romanNumeral, .empty, "Roman numeral for a negative number should be an empty string.")
   }
+
+  // MARK: - formatAsCurrency(locale:)
+
+  func test_whenFormattedWithCustomLocaleGivenPositiveValue_thenFormattedStringContainsCurrencySymbol() {
+    // Given
+    let price = 1500
+
+    // When
+    let formattedPrice = price.formatAsCurrency()
+
+    // Then
+    XCTAssertEqual(formattedPrice, "\(Locale.current.currencySymbol!)1.500,00")
+  }
+
+  func test_whenFormattedWithCustomLocaleGivenPositiveValue_thenFormattedStringContainsCustomCurrencySymbol() {
+    // Given
+    let price = 1500
+    let customLocale = Locale(identifier: "de_DE")
+
+    // When
+    let formattedPrice = price.formatAsCurrency(locale: customLocale)
+
+    // Then
+    XCTAssertEqual(formattedPrice, "1.500,00 \(Locale.current.currencySymbol!)")
+  }
+
+  func test_whenFormattedGivenNegativeValue_thenFormattedStringContainsNegativeSign() {
+    // Given
+    let negativePrice = -1500
+
+    // When
+    let formattedNegativePrice = negativePrice.formatAsCurrency()
+  
+    // Then
+    XCTAssertEqual(formattedNegativePrice, "-\(Locale.current.currencySymbol!)1.500,00")
+  }
+
+  func test_whenFormattedGivenZeroValue_thenFormattedStringContainsZero() {
+    // Given
+    let zeroPrice = 0
+
+    // When
+    let formattedZeroPrice = zeroPrice.formatAsCurrency()
+
+    // Then
+    XCTAssertEqual(formattedZeroPrice, "\(Locale.current.currencySymbol!)0,00")
+  }
 }

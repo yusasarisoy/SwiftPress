@@ -1,3 +1,5 @@
+import Foundation
+
 public extension Int {
   /// Checks if the integer is even.
   ///
@@ -145,5 +147,26 @@ public extension Int {
     }
 
     return result
+  }
+
+  /// Formats the integer as currency using the specified locale.
+  ///
+  /// - Parameters:
+  ///   - locale: The locale to use for formatting the currency. Defaults to the current locale.
+  /// - Returns: A string representation of the integer formatted as currency.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let price = 1500
+  /// let formattedPrice = price.formatAsCurrency()
+  /// print("Formatted Price: \(formattedPrice)")
+  /// ```
+  ///
+  func formatAsCurrency(locale: Locale = Locale.current) -> String {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    formatter.locale = locale
+    return formatter.string(from: NSNumber(value: self)) ?? .empty
   }
 }

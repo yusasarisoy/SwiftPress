@@ -351,6 +351,27 @@ public extension String {
     return camelCaseComponents.joined()
   }
 
+  /// Converts a camel-case string to snake case.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// // Example Usage:
+  /// let camelCaseString = "myVariableName"
+  /// let snakeCaseString = camelCaseString.camelToSnakeCase()
+  /// print(snakeCaseString)
+  /// ```
+  ///
+  /// - Returns: The snake case representation of the string.
+  ///
+  func camelToSnakeCase() -> String {
+    guard let regex = try? NSRegularExpression(pattern: "([a-z])([A-Z])") else {
+      return .empty
+    }
+    let range = NSRange(startIndex..<endIndex, in: self)
+    return regex.stringByReplacingMatches(in: self, range: range, withTemplate: "$1_$2").lowercased()
+  }
+
   /// Checks if a string is empty or consists only of whitespaces.
   ///
   /// ## Example

@@ -549,6 +549,20 @@ final class StringTests: XCTestCase {
     XCTAssertEqual(camelCaseString, "HelloWorldSwift", "The snake_case string should be converted to CamelCase.")
   }
 
+  // MARK: - camelToSnakeCase()
+
+  func test_whenConvertingCamelCaseToSnakeCase_thenShouldBeConvertedSuccessfully() {
+    // Given
+    let inputString = "myVariableName"
+    let expectedResult = "my_variable_name"
+
+    // When
+    let result = inputString.camelToSnakeCase()
+
+    // Then
+    XCTAssertEqual(result, expectedResult, "Conversion from camel case to snake case failed")
+  }
+
   // MARK: - isBlank
 
   func test_whenCheckingWhetherEmptyStringIsBlank_thenReturnsTrue() {

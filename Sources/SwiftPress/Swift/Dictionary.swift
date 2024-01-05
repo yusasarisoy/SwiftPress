@@ -1,3 +1,5 @@
+import Foundation
+
 public extension Dictionary {
   /// Filters the dictionary based on a predicate.
   ///
@@ -78,5 +80,44 @@ public extension Dictionary {
     default defaultValue: Value
   ) -> Value {
     self[key].or(defaultValue)
+  }
+
+  /// Converts the dictionary to a JSON-formatted string.
+  ///
+  /// This method utilizes the `JSONSerialization` class to serialize the dictionary into JSON data.
+  ///
+  /// - Returns: A JSON-formatted string representation of the dictionary, or nil if the conversion fails.
+  ///
+  /// - Note: The method returns `nil` if the dictionary cannot be serialized to JSON data or if the JSON data cannot be converted to a UTF-8 encoded string.
+  ///
+  /// - Warning: This method performs synchronous serialization and might be time-consuming for large dictionaries. Consider using it on a background queue for better responsiveness in UI applications.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// // Sample dictionary
+  /// let sampleDictionary: [String: Any] = [
+  ///   "name": "John Doe",
+  ///   "age": 30,
+  ///   "city": "New York",
+  ///   "isStudent": true
+  /// ]
+  ///
+  /// // Using the toJSONString extension to convert the dictionary to a JSON-formatted string.
+  /// if let jsonString = sampleDictionary.toJSONString {
+  ///   print("JSON String:")
+  ///   print(jsonString)
+  /// } else {
+  ///   print("Failed to convert dictionary to JSON string.")
+  /// }
+  /// ```
+  ///
+  var toJSONString: String? {
+    guard
+      let jsonData = try? JSONSerialization.data(withJSONObject: self),
+      let jsonString = String(data: jsonData, encoding: .utf8) else {
+      return nil
+    }
+    return jsonString
   }
 }

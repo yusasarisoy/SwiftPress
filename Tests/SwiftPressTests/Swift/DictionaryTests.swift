@@ -99,4 +99,32 @@ final class DictionaryTests: XCTestCase {
     // Then
     XCTAssertEqual(charlieScore, 95, "Expected to get Charlie's score of 95 without using the default value")
   }
+
+  // MARK: - toJSONString
+
+  func test_whenConvertingToJSONStringForGivenValidDictionary_thenResultIsExpected() {
+    // Given
+    let sampleDictionary: [String: Any] = [
+      "name": "John Doe",
+      "age": 30,
+      "city": "New York",
+      "isStudent": true
+    ]
+
+    // When
+    let jsonString = sampleDictionary.toJSONString
+
+    // Then
+    XCTAssertNotNil(jsonString, "Conversion to JSON string should not be nil")
+
+    guard let jsonString else {
+      XCTFail()
+      return
+    }
+
+    XCTAssertTrue(jsonString.contains("\"name\":\"John Doe\""), "JSON string should contain the name")
+    XCTAssertTrue(jsonString.contains("\"age\":30"), "JSON string should contain the age")
+    XCTAssertTrue(jsonString.contains("\"city\":\"New York\""), "JSON string should contain the city")
+    XCTAssertTrue(jsonString.contains("\"isStudent\":true"), "JSON string should contain the isStudent")
+  }
 }

@@ -128,4 +128,17 @@ final class DoubleTests: XCTestCase {
     // Then
     XCTAssertEqual(radians, 2 * .pi, accuracy: 0.0001, "Should return 2π radians for 360 degrees")
   }
+
+  // MARK: - radiansToDegrees
+
+  func test_whenConvertingToDegreesGivenRadiansPiOver2_thenShouldReturn90() {
+    // Given
+    let radians: Double = .pi / 2
+
+    // When
+    let degrees = radians.radiansToDegrees
+
+    // Then
+    XCTAssertEqual(degrees, 90.0, accuracy: 0.0001, "Conversion from radians to degrees failed.")
+  }
 }

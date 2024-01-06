@@ -44,4 +44,23 @@ public extension Double {
   var degreesToRadians: Double {
     self * .pi / 180.0
   }
+
+  /// Converts radians to degrees.
+  ///
+  /// This extension on `Double` provides a convenient way to convert radians to degrees.
+  /// The conversion formula used is: `degrees = radians * 180.0 / π`.
+  ///
+  /// - Returns: The value in degrees.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let radians = 1.5708
+  /// let degrees = radians.radiansToDegrees
+  /// print(degrees) // Outputs: 90.0
+  /// ```
+  ///
+  var radiansToDegrees: Double {
+    self * 180.0 / .pi
+  }
 }

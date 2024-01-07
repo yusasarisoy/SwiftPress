@@ -597,6 +597,63 @@ final class StringTests: XCTestCase {
     // Then
     XCTAssertFalse(result, "Expected a non-empty string to not be blank")
   }
+
+  // MARK: - boolValue
+
+  func test_whenBoolValueCalledForGivenValidTrueString_thenShouldReturnTrue() {
+    // Given
+    let trueString = "true"
+
+    // When
+    let result = trueString.boolValue
+
+    // Then
+    XCTAssertTrue(result, "Expected true for '\(trueString)'")
+  }
+
+  func test_whenBoolValueCalledForGivenValidFalseString_thenShouldReturnFalse() {
+    // Given
+    let falseString = "false"
+
+    // When
+    let result = falseString.boolValue
+
+    // Then
+    XCTAssertFalse(result, "Expected false for '\(falseString)'")
+  }
+
+  func test_whenBoolValueCalledForGivenUpperCaseTrueString_thenShouldReturnTrue() {
+    // Given
+    let upperCaseTrueString = "TRUE"
+
+    // When
+    let result = upperCaseTrueString.boolValue
+
+    // Then
+    XCTAssertTrue(result, "Expected true for '\(upperCaseTrueString)' (case-insensitive)")
+  }
+
+  func test_whenBoolValueCalledForGivenMixedCaseFalseString_thenShouldReturnFalse() {
+    // Given
+    let mixedCaseFalseString = "FaLsE"
+
+    // When
+    let result = mixedCaseFalseString.boolValue
+
+    // Then
+    XCTAssertFalse(result, "Expected false for '\(mixedCaseFalseString)' (case-insensitive)")
+  }
+
+  func test_whenBoolValueCalledForGivenInvalidString_thenShouldReturnFalse() {
+    // Given
+    let invalidString = "invalid"
+
+    // When
+    let result = invalidString.boolValue
+
+    // Then
+    XCTAssertFalse(result, "Expected false for '\(invalidString)' (invalid value)")
+  }
 }
 
 // MARK: - Localizable

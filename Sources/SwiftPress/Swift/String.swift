@@ -391,6 +391,25 @@ public extension String {
   var isBlank: Bool {
     allSatisfy { $0.isWhitespace }
   }
+
+  /// Converts a string to a boolean value.
+  ///
+  /// The conversion is case-insensitive, and the string is considered `true` only if it exactly matches "true".
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// let trueString = "true"
+  /// let falseString = "false"
+  /// let isTrue = trueString.boolValue // true
+  /// let isFalse = falseString.boolValue // false
+  /// ```
+  ///
+  /// - Returns: `true` if the string is "true"; otherwise, `false`.
+  ///
+  var boolValue: Bool {
+    lowercased() == "true"
+  }
 }
 
 // MARK: - RawRepresentable

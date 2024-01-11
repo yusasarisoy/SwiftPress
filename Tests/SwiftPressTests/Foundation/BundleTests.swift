@@ -46,6 +46,32 @@ final class BundleTests: XCTestCase {
       XCTFail("Failed to create a test JSON file: \(error)")
     }
   }
+  
+  // MARK: - appVersion
+  
+  func test_whenCheckAppVersion_expectTheVersionIsCorrect() {
+    // Given
+    let mockInfoDictionary: [String: Any] = ["CFBundleShortVersionString": "1.0"]
+    let mockBundle = MockBundle(infoDictionary: mockInfoDictionary)
+    
+    // When
+    let appVersion = mockBundle.appVersion
+    
+    // Then
+    XCTAssertEqual(appVersion, "1.0")
+  }
+  
+  func test_whenCheckAppVersionForMissing_expectTheVersionIsNil() {
+    // Given
+    let mockInfoDictionary: [String: Any] = [:]
+    let mockBundle = MockBundle(infoDictionary: mockInfoDictionary)
+    
+    // When
+    let appVersion = mockBundle.appVersion
+    
+    // Then
+    XCTAssertNil(appVersion)
+  }
 }
 
 // MARK: - MyModel
@@ -53,4 +79,27 @@ final class BundleTests: XCTestCase {
 struct MyModel: Decodable {
   let title: String
   let message: String
+}
+
+// MARK: - MockBundle
+
+final class MockBundle: Bundle {
+
+  // MARK: - Properties
+
+  private let mockInfoDictionary: [String: Any]?
+
+  // MARK: - Initialization
+
+  init(infoDictionary: [String: Any]?) {
+    mockInfoDictionary = infoDictionary
+
+    super.init()
+  }
+
+  // MARK: - Override Methods
+
+  override var infoDictionary: [String: Any]? {
+    mockInfoDictionary
+  }
 }

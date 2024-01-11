@@ -1,5 +1,9 @@
 import Foundation
 
+private enum BundleConstant {
+  static let bundleVersion = "CFBundleShortVersionString"
+}
+
 public extension Bundle {
   /// Decodes JSON data from a file located in the app's bundle into a specified Swift type.
   ///
@@ -56,5 +60,24 @@ public extension Bundle {
       print("Error decoding JSON file \(file): \(error).")
       return nil
     }
+  }
+
+  /// Retrieves the app version number.
+  ///
+  /// - Returns: The app version number as a string.
+  ///
+  /// ## Example
+  ///
+  /// ```swift
+  /// // Access the app version
+  /// if let appVersion = Bundle.main.appVersion {
+  ///   print("App Version: \(appVersion).")
+  /// } else {
+  ///   print("Unable to retrieve app version.")
+  /// }
+  /// ```
+  ///
+  var appVersion: String? {
+    infoDictionary?[BundleConstant.bundleVersion] as? String
   }
 }
